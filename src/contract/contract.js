@@ -822,7 +822,7 @@ class ContractConnector {
 
     async userData() {
         const accounts = await web3.eth.getAccounts();
-        await this.staking.methods.userData(accounts[0]).call(accounts[0]);
+        await this.staking.methods.userData(accounts[0]).call();
     }
 
     async viewUnpaid() {
