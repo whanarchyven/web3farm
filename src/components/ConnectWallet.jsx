@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Web3 from 'web3'
+import ContractConnector from "@/contract/contract";
 
 const ConnectWallet = () => {
     const [web3, setWeb3] = useState(null)
@@ -38,9 +39,11 @@ const ConnectWallet = () => {
         return result
     }
 
+    const contract=new ContractConnector()
+
     return (
         <div className={'w-full'}>
-            {account?<p  className={'text-xs leading-[80%] sm:text-sm'}>{translateAddress(account)}</p>:<button className={'text-xs leading-[80%] sm:text-sm'} onClick={connectToMetaMask}>Connect MetaMask</button>}
+            {account?<p  className={'text-xs leading-[80%] sm:text-sm'}>{translateAddress(account)}</p>:<button className={'text-xs leading-[80%] sm:text-sm'} onClick={async ()=>{await connectToMetaMask();console.log(contract.userData())}}>Connect MetaMask</button>}
         </div>
     )
 }

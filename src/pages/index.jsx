@@ -19,842 +19,12 @@ export default function Home() {
     const [navbarHidden, setNavbarHidden] = useState(true)
 
 
-
     const boosters = [
         'X2 ATOM BOOSTER',
         'X3 ATOM BOOSTER',
         'X4 ATOM BOOSTER',
         'X5 ATOM BOOSTER',
     ]
-
-    const web3 = new Web3(Web3.givenProvider);
-
-    const rewardTokenABI = [{
-            "inputs": [],
-            "stateMutability": "nonpayable",
-            "type": "constructor"
-        }, {
-            "anonymous": false,
-            "inputs": [{"indexed": true, "internalType": "address", "name": "owner", "type": "address"}, {
-                "indexed": true,
-                "internalType": "address",
-                "name": "spender",
-                "type": "address"
-            }, {"indexed": false, "internalType": "uint256", "name": "value", "type": "uint256"}],
-            "name": "Approval",
-            "type": "event"
-        }, {
-            "anonymous": false,
-            "inputs": [{"indexed": true, "internalType": "address", "name": "from", "type": "address"}, {
-                "indexed": true,
-                "internalType": "address",
-                "name": "to",
-                "type": "address"
-            }, {"indexed": false, "internalType": "uint256", "name": "value", "type": "uint256"}],
-            "name": "Transfer",
-            "type": "event"
-        }, {
-            "inputs": [{"internalType": "address", "name": "owner", "type": "address"}, {
-                "internalType": "address",
-                "name": "spender",
-                "type": "address"
-            }],
-            "name": "allowance",
-            "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-            "stateMutability": "view",
-            "type": "function"
-        }, {
-            "inputs": [{"internalType": "address", "name": "spender", "type": "address"}, {
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
-            }],
-            "name": "approve",
-            "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        }, {
-            "inputs": [{"internalType": "address", "name": "account", "type": "address"}],
-            "name": "balanceOf",
-            "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-            "stateMutability": "view",
-            "type": "function"
-        }, {
-            "inputs": [],
-            "name": "decimals",
-            "outputs": [{"internalType": "uint8", "name": "", "type": "uint8"}],
-            "stateMutability": "view",
-            "type": "function"
-        }, {
-            "inputs": [{"internalType": "address", "name": "spender", "type": "address"}, {
-                "internalType": "uint256",
-                "name": "subtractedValue",
-                "type": "uint256"
-            }],
-            "name": "decreaseAllowance",
-            "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        }, {
-            "inputs": [{"internalType": "address", "name": "spender", "type": "address"}, {
-                "internalType": "uint256",
-                "name": "addedValue",
-                "type": "uint256"
-            }],
-            "name": "increaseAllowance",
-            "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        }, {
-            "inputs": [{"internalType": "uint256", "name": "amount", "type": "uint256"}],
-            "name": "mint",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        }, {
-            "inputs": [],
-            "name": "name",
-            "outputs": [{"internalType": "string", "name": "", "type": "string"}],
-            "stateMutability": "view",
-            "type": "function"
-        }, {
-            "inputs": [],
-            "name": "symbol",
-            "outputs": [{"internalType": "string", "name": "", "type": "string"}],
-            "stateMutability": "view",
-            "type": "function"
-        }, {
-            "inputs": [],
-            "name": "totalSupply",
-            "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-            "stateMutability": "view",
-            "type": "function"
-        }, {
-            "inputs": [{"internalType": "address", "name": "to", "type": "address"}, {
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
-            }],
-            "name": "transfer",
-            "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        }, {
-            "inputs": [{"internalType": "address", "name": "from", "type": "address"}, {
-                "internalType": "address",
-                "name": "to",
-                "type": "address"
-            }, {"internalType": "uint256", "name": "amount", "type": "uint256"}],
-            "name": "transferFrom",
-            "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        }]
-    ; //сюда аби пуляешь, но лучше из другого файла импротить. Аби можно взять на страницах контрактов
-    const stakedTokenABI = [{
-        "inputs": [],
-        "stateMutability": "nonpayable",
-        "type": "constructor"
-    }, {
-        "anonymous": false,
-        "inputs": [{"indexed": true, "internalType": "address", "name": "owner", "type": "address"}, {
-            "indexed": true,
-            "internalType": "address",
-            "name": "spender",
-            "type": "address"
-        }, {"indexed": false, "internalType": "uint256", "name": "value", "type": "uint256"}],
-        "name": "Approval",
-        "type": "event"
-    }, {
-        "anonymous": false,
-        "inputs": [{"indexed": true, "internalType": "address", "name": "from", "type": "address"}, {
-            "indexed": true,
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-        }, {"indexed": false, "internalType": "uint256", "name": "value", "type": "uint256"}],
-        "name": "Transfer",
-        "type": "event"
-    }, {
-        "inputs": [{"internalType": "address", "name": "owner", "type": "address"}, {
-            "internalType": "address",
-            "name": "spender",
-            "type": "address"
-        }],
-        "name": "allowance",
-        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "address", "name": "spender", "type": "address"}, {
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-        }],
-        "name": "approve",
-        "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "address", "name": "account", "type": "address"}],
-        "name": "balanceOf",
-        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "decimals",
-        "outputs": [{"internalType": "uint8", "name": "", "type": "uint8"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "address", "name": "spender", "type": "address"}, {
-            "internalType": "uint256",
-            "name": "subtractedValue",
-            "type": "uint256"
-        }],
-        "name": "decreaseAllowance",
-        "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "address", "name": "spender", "type": "address"}, {
-            "internalType": "uint256",
-            "name": "addedValue",
-            "type": "uint256"
-        }],
-        "name": "increaseAllowance",
-        "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "uint256", "name": "amount", "type": "uint256"}],
-        "name": "mint",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "name",
-        "outputs": [{"internalType": "string", "name": "", "type": "string"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "symbol",
-        "outputs": [{"internalType": "string", "name": "", "type": "string"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "totalSupply",
-        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "address", "name": "to", "type": "address"}, {
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-        }],
-        "name": "transfer",
-        "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "address", "name": "from", "type": "address"}, {
-            "internalType": "address",
-            "name": "to",
-            "type": "address"
-        }, {"internalType": "uint256", "name": "amount", "type": "uint256"}],
-        "name": "transferFrom",
-        "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }];
-    const erc1155ABI = [{"inputs": [], "stateMutability": "nonpayable", "type": "constructor"}, {
-            "anonymous": false,
-            "inputs": [{"indexed": true, "internalType": "address", "name": "account", "type": "address"}, {
-                "indexed": true,
-                "internalType": "address",
-                "name": "operator",
-                "type": "address"
-            }, {"indexed": false, "internalType": "bool", "name": "approved", "type": "bool"}],
-            "name": "ApprovalForAll",
-            "type": "event"
-        }, {
-            "anonymous": false,
-            "inputs": [{
-                "indexed": true,
-                "internalType": "address",
-                "name": "previousOwner",
-                "type": "address"
-            }, {"indexed": true, "internalType": "address", "name": "newOwner", "type": "address"}],
-            "name": "OwnershipTransferred",
-            "type": "event"
-        }, {
-            "anonymous": false,
-            "inputs": [{"indexed": true, "internalType": "address", "name": "operator", "type": "address"}, {
-                "indexed": true,
-                "internalType": "address",
-                "name": "from",
-                "type": "address"
-            }, {"indexed": true, "internalType": "address", "name": "to", "type": "address"}, {
-                "indexed": false,
-                "internalType": "uint256[]",
-                "name": "ids",
-                "type": "uint256[]"
-            }, {"indexed": false, "internalType": "uint256[]", "name": "values", "type": "uint256[]"}],
-            "name": "TransferBatch",
-            "type": "event"
-        }, {
-            "anonymous": false,
-            "inputs": [{"indexed": true, "internalType": "address", "name": "operator", "type": "address"}, {
-                "indexed": true,
-                "internalType": "address",
-                "name": "from",
-                "type": "address"
-            }, {"indexed": true, "internalType": "address", "name": "to", "type": "address"}, {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "id",
-                "type": "uint256"
-            }, {"indexed": false, "internalType": "uint256", "name": "value", "type": "uint256"}],
-            "name": "TransferSingle",
-            "type": "event"
-        }, {
-            "anonymous": false,
-            "inputs": [{"indexed": false, "internalType": "string", "name": "value", "type": "string"}, {
-                "indexed": true,
-                "internalType": "uint256",
-                "name": "id",
-                "type": "uint256"
-            }],
-            "name": "URI",
-            "type": "event"
-        }, {
-            "inputs": [{"internalType": "address", "name": "account", "type": "address"}, {
-                "internalType": "uint256",
-                "name": "id",
-                "type": "uint256"
-            }],
-            "name": "balanceOf",
-            "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-            "stateMutability": "view",
-            "type": "function"
-        }, {
-            "inputs": [{"internalType": "address[]", "name": "accounts", "type": "address[]"}, {
-                "internalType": "uint256[]",
-                "name": "ids",
-                "type": "uint256[]"
-            }],
-            "name": "balanceOfBatch",
-            "outputs": [{"internalType": "uint256[]", "name": "", "type": "uint256[]"}],
-            "stateMutability": "view",
-            "type": "function"
-        }, {
-            "inputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-            "name": "boosters",
-            "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-            "stateMutability": "view",
-            "type": "function"
-        }, {
-            "inputs": [{"internalType": "uint256", "name": "id", "type": "uint256"}],
-            "name": "exists",
-            "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-            "stateMutability": "view",
-            "type": "function"
-        }, {
-            "inputs": [{"internalType": "address", "name": "account", "type": "address"}, {
-                "internalType": "address",
-                "name": "operator",
-                "type": "address"
-            }],
-            "name": "isApprovedForAll",
-            "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-            "stateMutability": "view",
-            "type": "function"
-        }, {
-            "inputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-            "name": "maxSupply",
-            "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-            "stateMutability": "view",
-            "type": "function"
-        }, {
-            "inputs": [{"internalType": "uint256", "name": "id", "type": "uint256"}, {
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
-            }], "name": "mint", "outputs": [], "stateMutability": "payable", "type": "function"
-        }, {
-            "inputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-            "name": "mintPrice",
-            "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-            "stateMutability": "view",
-            "type": "function"
-        }, {
-            "inputs": [],
-            "name": "owner",
-            "outputs": [{"internalType": "address", "name": "", "type": "address"}],
-            "stateMutability": "view",
-            "type": "function"
-        }, {
-            "inputs": [],
-            "name": "renounceOwnership",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        }, {
-            "inputs": [{"internalType": "address", "name": "from", "type": "address"}, {
-                "internalType": "address",
-                "name": "to",
-                "type": "address"
-            }, {"internalType": "uint256[]", "name": "ids", "type": "uint256[]"}, {
-                "internalType": "uint256[]",
-                "name": "amounts",
-                "type": "uint256[]"
-            }, {"internalType": "bytes", "name": "data", "type": "bytes"}],
-            "name": "safeBatchTransferFrom",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        }, {
-            "inputs": [{"internalType": "address", "name": "from", "type": "address"}, {
-                "internalType": "address",
-                "name": "to",
-                "type": "address"
-            }, {"internalType": "uint256", "name": "id", "type": "uint256"}, {
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
-            }, {"internalType": "bytes", "name": "data", "type": "bytes"}],
-            "name": "safeTransferFrom",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        }, {
-            "inputs": [{"internalType": "address", "name": "operator", "type": "address"}, {
-                "internalType": "bool",
-                "name": "approved",
-                "type": "bool"
-            }], "name": "setApprovalForAll", "outputs": [], "stateMutability": "nonpayable", "type": "function"
-        }, {
-            "inputs": [{"internalType": "string", "name": "newuri", "type": "string"}],
-            "name": "setURI",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        }, {
-            "inputs": [{"internalType": "bytes4", "name": "interfaceId", "type": "bytes4"}],
-            "name": "supportsInterface",
-            "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-            "stateMutability": "view",
-            "type": "function"
-        }, {
-            "inputs": [{"internalType": "uint256", "name": "id", "type": "uint256"}],
-            "name": "totalSupply",
-            "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-            "stateMutability": "view",
-            "type": "function"
-        }, {
-            "inputs": [{"internalType": "address", "name": "newOwner", "type": "address"}],
-            "name": "transferOwnership",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        }, {
-            "inputs": [{"internalType": "uint256", "name": "_tokenid", "type": "uint256"}],
-            "name": "uri",
-            "outputs": [{"internalType": "string", "name": "", "type": "string"}],
-            "stateMutability": "view",
-            "type": "function"
-        }, {
-            "inputs": [{"internalType": "address", "name": "recipient", "type": "address"}, {
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
-            }], "name": "withdraw", "outputs": [], "stateMutability": "nonpayable", "type": "function"
-        }]
-    ;
-    const stakingABI = [{
-        "inputs": [{
-            "internalType": "address",
-            "name": "_rewardTokenAddress",
-            "type": "address"
-        }, {"internalType": "address", "name": "_stakedTokenAddress", "type": "address"}, {
-            "internalType": "address",
-            "name": "_boosterToken",
-            "type": "address"
-        }], "stateMutability": "nonpayable", "type": "constructor"
-    }, {
-        "anonymous": false,
-        "inputs": [{
-            "indexed": true,
-            "internalType": "address",
-            "name": "recipient",
-            "type": "address"
-        }, {"indexed": false, "internalType": "uint256", "name": "tokenAmount", "type": "uint256"}],
-        "name": "ClaimRewards",
-        "type": "event"
-    }, {
-        "anonymous": false,
-        "inputs": [{"indexed": false, "internalType": "address", "name": "user", "type": "address"}, {
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-        }, {"indexed": false, "internalType": "uint256", "name": "boost", "type": "uint256"}],
-        "name": "NewLock",
-        "type": "event"
-    }, {
-        "anonymous": false,
-        "inputs": [{
-            "indexed": true,
-            "internalType": "address",
-            "name": "previousOwner",
-            "type": "address"
-        }, {"indexed": true, "internalType": "address", "name": "newOwner", "type": "address"}],
-        "name": "OwnershipTransferred",
-        "type": "event"
-    }, {
-        "anonymous": false,
-        "inputs": [{
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-        }, {"indexed": false, "internalType": "uint256", "name": "time", "type": "uint256"}],
-        "name": "RewardDeposited",
-        "type": "event"
-    }, {
-        "anonymous": false,
-        "inputs": [{
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "newLockTime",
-            "type": "uint256"
-        }, {"indexed": false, "internalType": "uint256", "name": "newMinStaking", "type": "uint256"}, {
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "newMaxBoost",
-            "type": "uint256"
-        }],
-        "name": "SettingsUpdated",
-        "type": "event"
-    }, {
-        "anonymous": false,
-        "inputs": [{
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "totalAmount",
-            "type": "uint256"
-        }, {"indexed": false, "internalType": "uint256", "name": "startTime", "type": "uint256"}, {
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "endTime",
-            "type": "uint256"
-        }],
-        "name": "StakingCreated",
-        "type": "event"
-    }, {
-        "anonymous": false,
-        "inputs": [{"indexed": true, "internalType": "address", "name": "user", "type": "address"}, {
-            "indexed": false,
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-        }, {"indexed": false, "internalType": "uint256", "name": "boost", "type": "uint256"}],
-        "name": "Unlock",
-        "type": "event"
-    }, {
-        "inputs": [],
-        "name": "ACC_FACTOR",
-        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "booster",
-        "outputs": [{"internalType": "address", "name": "", "type": "address"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "boosterToken",
-        "outputs": [{"internalType": "contract IBooster", "name": "", "type": "address"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "uint256", "name": "_newMinStakingAmount", "type": "uint256"}],
-        "name": "changeMinStakingAmount",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "claim",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "endTime",
-        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "isFinished",
-        "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "lastDistribution",
-        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "minStakingAmount",
-        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "address", "name": "", "type": "address"}, {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-        }, {"internalType": "uint256[]", "name": "", "type": "uint256[]"}, {
-            "internalType": "uint256[]",
-            "name": "",
-            "type": "uint256[]"
-        }, {"internalType": "bytes", "name": "", "type": "bytes"}],
-        "name": "onERC1155BatchReceived",
-        "outputs": [{"internalType": "bytes4", "name": "", "type": "bytes4"}],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "address", "name": "", "type": "address"}, {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-        }, {"internalType": "uint256", "name": "", "type": "uint256"}, {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-        }, {"internalType": "bytes", "name": "", "type": "bytes"}],
-        "name": "onERC1155Received",
-        "outputs": [{"internalType": "bytes4", "name": "", "type": "bytes4"}],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "owner",
-        "outputs": [{"internalType": "address", "name": "", "type": "address"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "uint256", "name": "amount", "type": "uint256"}, {
-            "internalType": "bool",
-            "name": "useBooster",
-            "type": "bool"
-        }, {"internalType": "uint256", "name": "boosterId", "type": "uint256"}],
-        "name": "participate",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "renounceOwnership",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "address", "name": "tokenAdd", "type": "address"}, {
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-        }], "name": "rescueERC20", "outputs": [], "stateMutability": "nonpayable", "type": "function"
-    }, {
-        "inputs": [],
-        "name": "rewardPerSecond",
-        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "rewardToken",
-        "outputs": [{"internalType": "contract IERC20", "name": "", "type": "address"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "rewardTokenAddress",
-        "outputs": [{"internalType": "address", "name": "", "type": "address"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "address", "name": "", "type": "address"}],
-        "name": "rewards",
-        "outputs": [{
-            "internalType": "uint256",
-            "name": "totalExcludedToken",
-            "type": "uint256"
-        }, {"internalType": "uint256", "name": "lastClaim", "type": "uint256"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "sharedData",
-        "outputs": [{"internalType": "uint256", "name": "totalAmount", "type": "uint256"}, {
-            "internalType": "uint256",
-            "name": "totalBoostedAmount",
-            "type": "uint256"
-        }, {"internalType": "uint256", "name": "rewardPerShareToken", "type": "uint256"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "stakedToken",
-        "outputs": [{"internalType": "contract IERC20", "name": "", "type": "address"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "stakedTokenAddress",
-        "outputs": [{"internalType": "address", "name": "", "type": "address"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "uint256", "name": "_rewardAmount", "type": "uint256"}, {
-            "internalType": "uint256",
-            "name": "_startTime",
-            "type": "uint256"
-        }, {"internalType": "uint256", "name": "_endTime", "type": "uint256"}],
-        "name": "start",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "startTime",
-        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "bytes4", "name": "interfaceId", "type": "bytes4"}],
-        "name": "supportsInterface",
-        "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "totalTokenClaimed",
-        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "address", "name": "newOwner", "type": "address"}],
-        "name": "transferOwnership",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }, {
-        "inputs": [],
-        "name": "unlock",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "address", "name": "", "type": "address"}],
-        "name": "userData",
-        "outputs": [{"internalType": "uint256", "name": "amount", "type": "uint256"}, {
-            "internalType": "uint256",
-            "name": "boostedAmount",
-            "type": "uint256"
-        }, {"internalType": "uint256", "name": "lockedTime", "type": "uint256"}, {
-            "internalType": "bool",
-            "name": "hasBooster",
-            "type": "bool"
-        }, {"internalType": "uint256", "name": "boosterId", "type": "uint256"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "address", "name": "user", "type": "address"}],
-        "name": "viewUnpaid",
-        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-        "stateMutability": "view",
-        "type": "function"
-    }, {
-        "inputs": [{"internalType": "address", "name": "recipient", "type": "address"}, {
-            "internalType": "uint256",
-            "name": "amount",
-            "type": "uint256"
-        }], "name": "withdraw", "outputs": [], "stateMutability": "nonpayable", "type": "function"
-    }, {"stateMutability": "payable", "type": "receive"}];
-
-    const rewardTokenAddress = '0xe44fa14881b192be661ad5ec23227b9924079f80';
-    const stakedTokenAddress = '0x7fe57743b2967eb43e1f8a949387144569d5481d';
-    const erc1155Address = '0x6e58824a169452ae3dBD77F32ef44199B403221E';
-    const stakingAddress = '0x604e275876Be53fFD2165dDdb481187e42474aea';
-
-
-    const rewardToken = new web3.eth.Contract(rewardTokenABI, rewardTokenAddress);
-    const stakedToken = new web3.eth.Contract(stakedTokenABI, stakedTokenAddress);
-    const erc1155 = new web3.eth.Contract(erc1155ABI, erc1155Address);
-    const staking = new web3.eth.Contract(stakingABI, stakingAddress);
-
-    async function claimRewards() {
-        const accounts = await web3.eth.getAccounts();
-        await staking.methods.claim().send({from: accounts[0]});
-    }
-
-    async function stakeTokens(amount, useBooster, boosterId) {
-        const accounts = await web3.eth.getAccounts();
-        await staking.methods.participate(amount, useBooster, boosterId).send({from: accounts[0]});
-    }
-
-    async function claim() {
-        const accounts = await web3.eth.getAccounts();
-        await staking.methods.claim().send({from: accounts[0]});
-    }
-
-    async function unlock() {
-        const accounts = await web3.eth.getAccounts();
-        await staking.methods.unlock().send({from: accounts[0]});
-    }
-
-    async function minStakingAmount() {
-        const accounts = await web3.eth.getAccounts();
-        await staking.methods.minStakingAmount().send({from: accounts[0]});
-    }
-
-    async function rewardPerSecond() {
-        const accounts = await web3.eth.getAccounts();
-        await staking.methods.rewardPerSecond().send({from: accounts[0]});
-    }
-
-    async function startTime() {
-        const accounts = await web3.eth.getAccounts();
-        await staking.methods.startTime().send({from: accounts[0]});
-    }
-
-    async function isFinished() {
-        const accounts = await web3.eth.getAccounts();
-        await staking.methods.startTime().send({from: accounts[0]});
-    }
-
-    async function userData() {
-        const accounts = await web3.eth.getAccounts();
-        await staking.methods.userData(accounts[0]).send({from: accounts[0]});
-    }
-
-    async function viewUnpaid() {
-        const accounts = await web3.eth.getAccounts();
-        await staking.methods.viewUnpaid(accounts[0]).send({from: accounts[0]});
-    }
-
 
     return (
         <>
@@ -958,7 +128,8 @@ export default function Home() {
                 </div>
                 <div
                     className={'w-full bg-[#030021] sm:px-32 px-4 py-10 flex items-center flex-col justify-center relative overflow-x-hidden'}>
-                    <p className={' text-white text-center mb-10 text-2xl sm:text-6xl font-bold'}>Introducing new <br/> Farming
+                    <p className={' text-white text-center mb-10 text-2xl sm:text-6xl font-bold'}>Introducing
+                        new <br/> Farming
                         platform</p>
                     <div className={'grid gap-12 w-full grid-cols-1 sm:grid-cols-2'}>
                         <Deposit boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
@@ -993,7 +164,8 @@ export default function Home() {
                 </div>
                 <div className={'px-2 farm-booster-bg relative py-20 sm:px-32'}>
                     <p className={'text-white text-4xl sm:text-8xl mt-10 font-bold'}>Farm boosters</p>
-                    <p className={'text-white mt-2 text-sm w-4/5 font-museo mt-5 font-normal sm:text-2xl'}>collection of tools,
+                    <p className={'text-white mt-2 text-sm w-4/5 font-museo mt-5 font-normal sm:text-2xl'}>collection of
+                        tools,
                         techniques, and practices aimed at enhancing the productivity and efficiency of farming
                         operations. This program is designed to provide farmers with the necessary resources to optimize
                         their agricultural output, increase crop yields, improve soil health, and reduce waste.</p>
@@ -1111,48 +283,62 @@ export default function Home() {
                 <div className={'bg-[#110333] py-10 4'}>
                     <p className={'text-2xl sm:text-8xl text-center font-black text-white'}>Partners</p>
                     <Marquee direction={'left'} gradient={false} className={'overflow-hidden my-6'}>
-                        <div className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
+                        <div
+                            className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
                             <img src={'/images/partners/binance.svg'} className={'w-3/4 h-32'}/>
                         </div>
-                        <div className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
+                        <div
+                            className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
                             <img src={'/images/partners/binance.svg'} className={'w-3/4 h-32'}/>
                         </div>
-                        <div className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
+                        <div
+                            className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
                             <img src={'/images/partners/binance.svg'} className={'w-3/4 h-32'}/>
                         </div>
-                        <div className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
+                        <div
+                            className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
                             <img src={'/images/partners/binance.svg'} className={'w-3/4 h-32'}/>
                         </div>
-                        <div className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
+                        <div
+                            className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
                             <img src={'/images/partners/binance.svg'} className={'w-3/4 h-32'}/>
                         </div>
-                        <div className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
+                        <div
+                            className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
                             <img src={'/images/partners/binance.svg'} className={'w-3/4 h-32'}/>
                         </div>
-                        <div className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
+                        <div
+                            className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
                             <img src={'/images/partners/binance.svg'} className={'w-3/4 h-32'}/>
                         </div>
                     </Marquee>
                     <Marquee direction={'right'} gradient={false} className={'overflow-hidden my-6'}>
-                        <div className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
+                        <div
+                            className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
                             <img src={'/images/partners/binance.svg'} className={'w-3/4 h-32'}/>
                         </div>
-                        <div className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
+                        <div
+                            className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
                             <img src={'/images/partners/binance.svg'} className={'w-3/4 h-32'}/>
                         </div>
-                        <div className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
+                        <div
+                            className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
                             <img src={'/images/partners/binance.svg'} className={'w-3/4 h-32'}/>
                         </div>
-                        <div className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
+                        <div
+                            className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
                             <img src={'/images/partners/binance.svg'} className={'w-3/4 h-32'}/>
                         </div>
-                        <div className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
+                        <div
+                            className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
                             <img src={'/images/partners/binance.svg'} className={'w-3/4 h-32'}/>
                         </div>
-                        <div className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
+                        <div
+                            className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
                             <img src={'/images/partners/binance.svg'} className={'w-3/4 h-32'}/>
                         </div>
-                        <div className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
+                        <div
+                            className={'w-72 h-20 mx-5 flex items-center deposit-bg justify-center rounded-lg border-2 border-[#A600E3]'}>
                             <img src={'/images/partners/binance.svg'} className={'w-3/4 h-32'}/>
                         </div>
                     </Marquee>
