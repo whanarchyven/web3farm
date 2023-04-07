@@ -12,10 +12,12 @@ module.exports = {
     extend: {
       colors:{
         "violet":"#A64AC9",
-        "blue":"#58FFE1"
+        "blue":"#58FFE1",
+        'orange':'#F4B521'
       },
       fontFamily:{
-        "pluto":"Pluto"
+        "pluto":"Pluto",
+        "museo":"MuseoModerno"
       },
       animation:{
         'navbarOpen':'navbarOpen 1000ms ease',
