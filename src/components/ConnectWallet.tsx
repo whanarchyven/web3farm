@@ -528,8 +528,10 @@ const ConnectWallet = () => {
                     const accounts = await web3.eth.getAccounts();
 
                     const some=await staking.methods.userData(accounts[0]).call({from:accounts[0]},(err,res)=>{
+                        console.log(accounts)
                         console.log(res)
                         console.log(err)
+                        console.log('AAAAAAA')
                     });
                     console.log(some)
                 }
