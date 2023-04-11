@@ -35,7 +35,7 @@ const SelectOptionsList = ({currentValue, setCurrentValue, variants}: selectOpti
                     <p className={'text-black text-sm leading-[100%]'}>{currentValue}</p>
                     <div className={'transition-all text-black duration-300 flex items-center justify-center rounded-full ml-3 w-5 h-5'+translateIcon()}>{'<'}</div>
                 </div>
-                {isOpen ? <div className={'duration-300 transition-transform duration-300 absolute text-left pl-3 p-3 bg-white text-black z-50 border-2 border-orange min-w-32 w-full left-0 top-9 rounded-sm' +toggleAnimation()}>{variants.map((item) => {
+                {isOpen ? <div className={'duration-300 transition-transform duration-300 absolute text-left pl-3 p-3 bg-white text-black z-50 border-2 border-orange min-w-32 w-fit left-0 top-9 rounded-sm' +toggleAnimation()}>{variants.map((item) => {
                     if(item!=currentValue){
                         return <p key={item} onClick={()=>{setCurrentValue(item)}} className={'my-2 whitespace-nowrap hover:bg-violet text-black hover:bg-opacity-5 cursor-pointer border-orange border-b-[1px]'}>{item}</p>
                     }

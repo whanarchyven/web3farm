@@ -14,19 +14,19 @@ const Navbar = ({isHidden, setIsHidden}:Interface) => {
     },
         {
             name: 'Roadmap',
-            url: '/'
+            url: '#roadmap'
         },
         {
             name: 'Partners',
-            url: '/'
+            url: '#partners'
         },
         {
             name: 'Farm',
-            url: '/'
+            url: '#farm'
         },
         {
             name: 'NFT boosters',
-            url: '/'
+            url: '#boosters'
         },
         {
             name: 'Socials',
@@ -54,11 +54,11 @@ const Navbar = ({isHidden, setIsHidden}:Interface) => {
                     <ConnectWallet></ConnectWallet>
                 </div>
             </div>
-            {isHidden?null:<div className={'w-full animate-navbarOpen transition-all duration-300 mt-3 hidden sm:grid grid-cols-7 items-center'}>
+            <div className={'w-full animate-navbarOpen transition-all duration-300 mt-3 hidden sm:grid grid-cols-7 items-center'}>
                 {links.map((link)=>{
-                    return <p key={link.name} className={'text-white text-center transition-colors duration-300 cursor-pointer font-bold'}>{link.name}</p>
+                    return <a key={link.name} href={link.url} className={'text-white text-center transition-colors duration-300 cursor-pointer font-bold'}>{link.name}</a>
                 })}
-            </div>}
+            </div>
         </div>
     );
 };
