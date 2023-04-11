@@ -4,7 +4,8 @@ interface FarmBoosterInterface {
     boostPercent:number,
     boostImage:string,
     supply:number,
-    price:number
+    price:number,
+    id:number
 }
 
 const FarmBooster = ({ boostIncrease, boostPercent, boostImage, price, supply }:FarmBoosterInterface) => {

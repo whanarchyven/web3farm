@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Image from "next/image";
 import CountdownTimer from "@/components/CountdownTimer";
 import SelectOptionsList from "@/components/SelectOption";
 import {classList} from "@/helpers/classList";
+import ContractConnector from "@/contract/contract";
 
 interface Interface {
     firstCoinName:string,
@@ -11,15 +12,34 @@ interface Interface {
     secondCoinIcon:string,
     rewardPerBlock:number,
     timeTillEnd:number,
-    boosters?:string[]
+    boosters?:string[],
 }
 
-const Deposit = ({firstCoinIcon, boosters, secondCoinIcon, secondCoinName, firstCoinName, timeTillEnd, rewardPerBlock}:Interface) => {
+const Deposit = ({firstCoinIcon, boosters, secondCoinIcon, secondCoinName, firstCoinName}:Interface) => {
 
     const [enteredValue,setEnteredValue]=useState('')
     const [depositedValue,setDepositedValue]=useState(0)
 
     const [booster,setBooster]=useState(boosters?boosters[0]:'You have not boosters')
+
+
+    const [timeTillEnd,setTimeTillEnd]=useState(0)
+
+    const [maxAllowToken,setMaxAllowToken]=useState(0)
+
+    const [minAllowToken,setMinAllowToken]=useState(0)
+
+    const [rewardPerBlock,setRewardPerBlock]=useState(0)
+
+
+    const contract=new ContractConnector()
+
+    useEffect(()=>{
+        const res = contract.endTime(setTimeTillEnd)
+        contract.allowance(maxAllowToken,setMaxAllowToken)
+        contract.minStakingAmount(setMinAllowToken)
+        contract.rewardPerSecond(setRewardPerBlock)
+    },[])
 
     return (
         <div className={'w-full rounded-xl border-[#A600E3] border-4 deposit-bg p-4'}>
@@ -39,30 +59,36 @@ const Deposit = ({firstCoinIcon, boosters, secondCoinIcon, secondCoinName, first
             <div className={'flex justify-center sm:flex-nowrap flex-wrap items-end'}>
                 <div className={'sm:w-full w-full flex flex-col justify-start'}>
                     <p className={'text-orange font-medium'}>Enter deposit</p>
-                    <input value={enteredValue} type={'number'} onChange={(event)=>{setEnteredValue(event.target.value)}} className={'h-9 w-full placeholder:text-xs text-sm sm:w-36 rounded-sm text-black font-bold border-2 border-violet placeholder:text-black placeholder:opacity-50 p-2'} placeholder={`Enter ${firstCoinName} value`}/>
-                </div>
-                <div className={'w-full sm:w-full cursor-pointer uppercase p-1 text-xs bg-orange flex items-center text-white font-bold justify-center h-9 rounded-sm my-3 sm:my-0 sm:ml-2'}>
-                    Approve
+                    <input min={minAllowToken} max={maxAllowToken} value={enteredValue} type={'number'} onChange={(event)=>{setEnteredValue(event.target.value)}} className={'h-9 w-full placeholder:text-xs text-sm sm:w-36 rounded-sm text-black font-bold border-2 border-violet placeholder:text-black placeholder:opacity-50 p-2'} placeholder={`Enter ${firstCoinName} value`}/>
                 </div>
                 <div className={'w-full sm:w-full cursor-pointer uppercase p-1 text-xs bg-orange flex items-center text-white font-bold justify-center h-9 rounded-sm my-3 sm:my-0 sm:ml-2'}
+                     onClick={() => {
+                         const test=contract.stakeTokens(depositedValue,false,0)
+                         console.log(test)
+                     }}>
+                    Approve
+                </div>
+                <div className={classList('w-full sm:w-full cursor-pointer uppercase p-1 text-xs bg-orange flex items-center text-white font-bold justify-center h-9 rounded-sm my-3 sm:my-0 sm:ml-2',timeTillEnd>0?'opacity-50':'opacity-100')}
                 onClick={()=>{
-                    setDepositedValue(depositedValue+Number(enteredValue))
+                    if(timeTillEnd==0){
+                        setDepositedValue(depositedValue+Number(enteredValue))
+                    }
                 }}>
                     Deposit +
                 </div>
             </div>
-            <div className={classList('mt-3',depositedValue>0?'opacity-100':'opacity-50')}>
-                <div className={'sm:flex justify-between items-start'}>
+            <div className={classList('mt-3')}>
+                <div className={classList('sm:flex justify-between items-start',depositedValue>0?'opacity-100':'opacity-50')}>
                     <p className={'text-white font-medium text-2xl'}>Deposited:<br/><span className={'text-orange'}> {depositedValue} {firstCoinName}</span></p>
                     <p className={'text-white sm:text-right font-normal text-sm'}>Reward per block: <br/> <span className={'text-2xl text-orange font-medium'}>{rewardPerBlock}</span></p>
                 </div>
                 <div className={'sm:flex justify-between items-center mt-4'}>
-                    <p className={'text-white font-medium text-2xl'}>EARNED:<br/><span className={'text-orange'}>{depositedValue*3.12415.toFixed(2)} {secondCoinName}</span></p>
+                    <p className={classList('text-white font-medium text-2xl',depositedValue>0?'opacity-100':'opacity-50')}>EARNED:<br/><span className={'text-orange'}>{depositedValue*3.12415.toFixed(2)} {secondCoinName}</span></p>
 
                     <p className={'text-white text-right font-normal text-sm'}>Time till block end: <br/> <span className={'text-2xl text-orange font-medium'}><CountdownTimer timeLimits={"seconds"} time={timeTillEnd}/></span></p>
                 </div>
 
-                <div className={'mt-5'}>
+                <div className={classList('mt-5',depositedValue>0?'opacity-100':'opacity-50')}>
                     <p className={'font-medium text-orange'}>Select Booster:</p>
                     <div className={'sm:flex justify-between items-center'}>
                         <div>
@@ -76,7 +102,7 @@ const Deposit = ({firstCoinIcon, boosters, secondCoinIcon, secondCoinName, first
                         </div>
                     </div>
                 </div>
-                <div className={'my-5 flex w-full justify-center'}>
+                <div className={classList('my-5 flex w-full justify-center',depositedValue>0?'opacity-100':'opacity-50')}>
                     <div className={'w-full sm:w-60 mb-2 cursor-pointer uppercase p-2 text-2xl bg-orange flex items-center text-white font-bold justify-center h-12 rounded-sm sm:mx-2 mx-0'}>
                         COLLECT
                     </div>

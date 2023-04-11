@@ -1,12 +1,18 @@
 import React from 'react';
 import ConnectWallet from './ConnectWallet'
 
-interface Interface {
+interface NavbarInterface {
     isHidden:boolean,
     setIsHidden:(arg:boolean)=>any
+    account:string,
+    setAccount:(item:string)=>any,
+    isAllowed:boolean,
+    setIsAllowed:(arg:boolean)=>any
+    allowance:any,
+    setAllowance:(arg:any)=>any
 }
 
-const Navbar = ({isHidden, setIsHidden}:Interface) => {
+const Navbar = ({isHidden, setIsHidden, allowance, setAllowance, isAllowed, setIsAllowed, setAccount, account}:NavbarInterface) => {
 
     const links = [{
         name: 'Whitepaper',
@@ -34,7 +40,7 @@ const Navbar = ({isHidden, setIsHidden}:Interface) => {
         },
         {
             name: 'Tokenomics',
-            url: '/'
+            url: '#tokenomics'
         },
 
     ]
@@ -51,7 +57,7 @@ const Navbar = ({isHidden, setIsHidden}:Interface) => {
                 </p>
                 <div
                     className={'w-40 cursor-pointer text-xs leading-3 sm:text-lg text-center sm:mx-6 font-black text-orange h-7 flex items-center justify-center bg-white border-orange rounded-full border-2'}>
-                    <ConnectWallet></ConnectWallet>
+                    <ConnectWallet account={account} allowance={allowance} setAllowance={setAllowance} setAccount={setAccount} isAllowed={isAllowed} setIsAllowed={setIsAllowed}></ConnectWallet>
                 </div>
             </div>
             <div className={'w-full animate-navbarOpen transition-all duration-300 mt-3 hidden sm:grid grid-cols-7 items-center'}>

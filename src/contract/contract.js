@@ -40,19 +40,32 @@ class ContractConnector {
         await this.staking.methods.unlock().send({from: accounts[0]});
     }
 
-    async minStakingAmount() {
+    async minStakingAmount(setState) {
         const accounts = await web3.eth.getAccounts();
-        await this.staking.methods.minStakingAmount().call();
+        await this.staking.methods.minStakingAmount().call((err,res)=>{
+            setState(res)
+        });
     }
 
-    async rewardPerSecond() {
+    async rewardPerSecond(setState) {
         const accounts = await web3.eth.getAccounts();
-        await this.staking.methods.rewardPerSecond().call();
+        await this.staking.methods.rewardPerSecond().call((err,res)=>{
+            setState(res)
+        });
     }
 
     async startTime() {
         const accounts = await web3.eth.getAccounts();
-        await this.staking.methods.startTime().call();
+        await this.staking.methods.startTime().call((err,res)=>{
+            console.log(res)
+        });
+    }
+
+    async endTime(setTime) {
+        const accounts = await web3.eth.getAccounts();
+        await this.staking.methods.endTime().call((err,res)=>{
+            setTime(Number(res))
+        });
     }
 
     async isFinished() {
@@ -79,7 +92,7 @@ class ContractConnector {
 
     async approve(amount_wei){
         const accounts = await web3.eth.getAccounts();
-        await this.stakedToken.methods.approve(accounts[0],amount_wei).send({from:accounts[0]})
+        await this.stakedToken.methods.approve(this.stakingAddress,amount_wei).send({from:accounts[0]})
     }
 
     async allowance(state,setState){

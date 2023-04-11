@@ -2,13 +2,17 @@ import React, {useState} from 'react'
 import Web3 from 'web3'
 import ContractConnector from "@/contract/contract";
 
-const ConnectWallet = () => {
+interface ConnectWalletInterface {
+    account:string,
+    setAccount:(item:string)=>any,
+    isAllowed:boolean,
+    setIsAllowed:(arg:boolean)=>any
+    allowance:any,
+    setAllowance:(arg:any)=>any
+}
+
+const ConnectWallet = ({account,setAccount, isAllowed, setIsAllowed, setAllowance, allowance}:ConnectWalletInterface) => {
     const [web3, setWeb3] = useState<Web3>(null)
-    const [account, setAccount] = useState<string>(null)
-
-    const [isAllowed, setIsAllowed] = useState(false)
-
-    const [allowance, setAllowance] = useState<any>(0)
 
     const [showDropMenu, setShowDropMenu] = useState(false)
 
@@ -74,35 +78,14 @@ const ConnectWallet = () => {
 
 
     return (
-        <div className={'w-full relative'}>
-            {account ? <p className={'text-xs leading-[80%] sm:text-sm'} onClick={() => {
+        <div className={'w-full h-full flex items-center justify-center relative'}>
+            {account ? <p className={'text-xs w-full h-full text-center sm:text-sm'} onClick={() => {
                     setShowDropMenu(!showDropMenu)
                 }}>{translateAddress(account)}</p> :
-                <button className={'text-xs leading-[80%] sm:text-sm'} onClick={async () => {
+                <button className={'text-xs w-full h-full text-center sm:text-sm'} onClick={async () => {
                     await connectToMetaMask();
                 }}>Connect MetaMask</button>}
-            {showDropMenu ?
-                <div className={'w-full absolute top-10 bg-white p-4 rounded-xl'}>
-                    {allowance == 0 ? <div>
-                        <p className={'text-xs text-left'}>You have not any pools for claim yet, needing approve</p>
-                        <div
-                            className={'bg-orange text-white text-xs uppercase rounded-md mt-2 p-1 flex items-center justify-center'}
-                            onClick={() => {
-                                const approved=contract.approve('115792089237316195423570985008687907853269984665640564039457584007913129639935')
-                                console.log(approved)
-                            }}>
-                            Approve
-                        </div>
-                    </div> : null}
-                    <div
-                        className={'bg-orange text-white text-xs uppercase rounded-md mt-2 p-1 flex items-center justify-center'}
-                        onClick={() => {
-                            setAccount(null)
-                            setShowDropMenu(false)
-                        }}>
-                        Disconnect
-                    </div>
-                </div> : null}
+
         </div>
     )
 }

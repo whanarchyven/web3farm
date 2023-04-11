@@ -9,6 +9,8 @@ import Marquee from "react-fast-marquee";
 import Deposit from "@/components/Deposit";
 import FarmBooster from "@/components/FarmBooster";
 import Web3 from 'web3';
+import ContractConnector from "@/contract/contract";
+import ConnectWallet from "@/components/ConnectWallet";
 
 
 const inter = Inter({subsets: ['latin']})
@@ -17,6 +19,16 @@ export default function Home() {
 
 
     const [navbarHidden, setNavbarHidden] = useState(true)
+
+    const [account, setAccount] = useState<string>(null)
+
+    const [isAllowed, setIsAllowed] = useState(false)
+
+    const [allowance, setAllowance] = useState<any>(0)
+
+    const [showDropMenu, setShowDropMenu] = useState(false)
+
+    const contract = new ContractConnector()
 
 
     const boosters = [
@@ -37,7 +49,9 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <main className={'min-h-screen overflow-x-hidden font-pluto '}>
-                <Navbar setIsHidden={setNavbarHidden} isHidden={navbarHidden}></Navbar>
+                <Navbar setIsAllowed={setIsAllowed} isAllowed={isAllowed} allowance={allowance}
+                        setAllowance={setAllowance} account={account} setAccount={setAccount}
+                        setIsHidden={setNavbarHidden} isHidden={navbarHidden}></Navbar>
                 <div className={'p-2 sm:p-14 pt-16 sm:pt-20 main-bg h-[986px]'}>
                     <div className={'grid mt-5 sm:mt-10 grid-cols-1 gap-8 w-full sm:grid-cols-6'}>
                         <div className={'sm:col-span-3'}>
@@ -95,6 +109,38 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
+                <div className={'w-full bg-[#030021] p-14'}>
+                    <a id={'pools'} onClick={()=>{contract.mint(2)}} className={' text-white text-center pt-28 mb-10 text-2xl sm:text-6xl font-bold'}>Available pools</a>
+                    {account ? <div>
+                            {allowance == 0 ? <div>
+                                <p className={'text-2xl text-white text-left'}>You have not any pools for claim yet,
+                                    needing approve</p>
+                                <div
+                                    className={'bg-orange w-72 my-4 cursor-pointer h-12 font-black text-white text-xl uppercase rounded-md mt-2 p-1 flex items-center justify-center'}
+                                    onClick={() => {
+                                        const approved = contract.approve('115792089237316195423570985008687907853269984665640564039457584007913129639935')
+                                        console.log(approved)
+                                    }}>
+                                    Approve
+                                </div>
+                            </div> : <p className={'text-2xl text-white text-left'}>You allowed to use pool</p>}
+                            <div
+                                className={'bg-orange w-72 my-4 cursor-pointer h-12 font-black text-white text-xl uppercase rounded-md mt-2 p-1 flex items-center justify-center'}
+                                onClick={() => {
+                                    setAccount(null)
+                                    setShowDropMenu(false)
+                                }}>
+                                Disconnect
+                            </div>
+                        </div> :
+                        <div className={'mt-4'}>
+                            <p className={'text-2xl text-white text-left'}>Before checking your available pools, you
+                                need to connect wallet</p>
+                            <div className={'w-72 h-12 mt-4 rounded-full flex items-center justify-center text-white font-black bg-orange'}>
+                                <ConnectWallet account={account} setAccount={setAccount} isAllowed={isAllowed} setIsAllowed={setIsAllowed} allowance={allowance} setAllowance={setAllowance}></ConnectWallet>
+                            </div>
+                        </div>}
+                </div>
                 <div
                     className={'w-full bg-[#030021] sm:px-32 px-4 pb-10 flex items-center flex-col justify-center relative overflow-x-hidden'}>
                     <a id={'farm'} className={' text-white text-center pt-28 mb-10 text-2xl sm:text-6xl font-bold'}>Introducing
@@ -146,15 +192,15 @@ export default function Home() {
                         website.</p>
                     <img src={'/images/booster_sprite.png'} className={'absolute right-0'}/>
                     <div className={'grid grid-cols-1 mt-10 sm:grid-cols-2 w-full sm:w-3/4 gap-8 '}>
-                        <FarmBooster boostIncrease={2} boostPercent={10} boostImage={'/images/atoms/x2.svg'}
+                        <FarmBooster boostIncrease={2} boostPercent={10} boostImage={'/images/atoms/x2.svg'} id={0}
                                      supply={200}
                                      price={0.25}></FarmBooster>
-                        <FarmBooster boostIncrease={3} boostPercent={30} boostImage={'/images/atoms/x3.svg'}
+                        <FarmBooster boostIncrease={3} boostPercent={30} boostImage={'/images/atoms/x3.svg'} id={1}
                                      supply={100}
                                      price={0.50}></FarmBooster>
-                        <FarmBooster boostIncrease={4} boostPercent={40} boostImage={'/images/atoms/x4.svg'} supply={50}
+                        <FarmBooster boostIncrease={4} boostPercent={40} boostImage={'/images/atoms/x4.svg'} supply={50} id={2}
                                      price={1.50}></FarmBooster>
-                        <FarmBooster boostIncrease={5} boostPercent={50} boostImage={'/images/atoms/x5.svg'} supply={25}
+                        <FarmBooster boostIncrease={5} boostPercent={50} boostImage={'/images/atoms/x5.svg'} supply={25} id={3}
                                      price={5.0}></FarmBooster>
                     </div>
                 </div>
@@ -232,6 +278,26 @@ export default function Home() {
                                 <li>Staking NFT</li>
                                 <li>Staking Gov token</li>
                                 <li>Staking Energy token</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a id={'tokenomics'}
+                       className={'text-5xl sm:text-8xl font-black block pt-28 text-orange'}>Tokenomics</a>
+                    <div className={'grid grid-cols-2 gap-4 mt-10 items-start'}>
+                        <div className={'w-full aspect-square'}>
+                            <img src={'/images/tokenomics.svg'}/>
+                        </div>
+                        <div>
+                            <ul className={'font-museo text-3xl font-semibold'}>
+                                <li className={'my-2 text-orange'}>30% to presale</li>
+                                <li className={'my-2 text-[#91E01E]'}>18% to liquidity</li>
+                                <li className={'my-2 text-[#CD1C6C]'}>8% PARTNERSHIP (locked)</li>
+                                <li className={'my-2 text-[#7A8CD3]'}>8% CEX Listing 1 (locked)</li>
+                                <li className={'my-2 text-[#C1F07E]'}>8% Staking rewards (locked)</li>
+                                <li className={'my-2 text-[#FAD683]'}>15% Ecosystem&Marketing (locked)</li>
+                                <li className={'my-2 text-[#E679AA]'}>7% Team token (locked)</li>
+                                <li className={'my-2 text-[#5A72D3]'}>5% others (locked)</li>
+                                <li className={'my-2 text-[#B0F054]'}>1% Airdrop (locked)</li>
                             </ul>
                         </div>
                     </div>
