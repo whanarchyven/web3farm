@@ -4,6 +4,7 @@ import CountdownTimer from "@/components/CountdownTimer";
 import SelectOptionsList from "@/components/SelectOption";
 import {classList} from "@/helpers/classList";
 import ContractConnector from "@/contract/contract";
+import Web3 from "web3";
 
 interface Interface {
     firstCoinName:string,
@@ -41,6 +42,26 @@ const Deposit = ({firstCoinIcon, boosters, secondCoinIcon, secondCoinName, first
         contract.rewardPerSecond(setRewardPerBlock)
     },[])
 
+    const [web3, setWeb3] = useState<Web3>(null)
+
+    const settingWeb3=async ()=>{
+        if (typeof window.ethereum !== 'undefined' && window.ethereum.request) {
+            // Подключаемся к MetaMask
+            const ethereum = window.ethereum
+            await ethereum.request({method: 'eth_requestAccounts'})
+            // Создаем экземпляр объекта Web3 и получаем адрес аккаунта
+            const web3 = new Web3(ethereum)
+            const accounts = await web3.eth.getAccounts()
+            setWeb3(web3)
+        }}
+
+
+    useEffect(()=>{
+        settingWeb3()
+    },[])
+
+
+
     return (
         <div className={'w-full rounded-xl border-[#A600E3] border-4 deposit-bg p-4'}>
             <div className={'w-full flex sm:flex-nowrap flex-wrap items-center justify-between'}>
@@ -63,8 +84,11 @@ const Deposit = ({firstCoinIcon, boosters, secondCoinIcon, secondCoinName, first
                 </div>
                 <div className={'w-full sm:w-full cursor-pointer uppercase p-1 text-xs bg-orange flex items-center text-white font-bold justify-center h-9 rounded-sm my-3 sm:my-0 sm:ml-2'}
                      onClick={() => {
-                         const test=contract.stakeTokens(depositedValue,false,0)
-                         console.log(test)
+                         if(web3){
+                             const total_amount = web3.utils.toWei(String(depositedValue), 'ether')
+                             const test=contract.stakeTokens(total_amount,false,0)
+                             console.log(test)
+                         }
                      }}>
                     Approve
                 </div>
@@ -80,7 +104,7 @@ const Deposit = ({firstCoinIcon, boosters, secondCoinIcon, secondCoinName, first
             <div className={classList('mt-3')}>
                 <div className={classList('sm:flex justify-between items-start',depositedValue>0?'opacity-100':'opacity-50')}>
                     <p className={'text-white font-medium text-2xl'}>Deposited:<br/><span className={'text-orange'}> {depositedValue} {firstCoinName}</span></p>
-                    <p className={'text-white sm:text-right font-normal text-sm'}>Reward per block: <br/> <span className={'text-2xl text-orange font-medium'}>{rewardPerBlock}</span></p>
+                    <p className={'text-white sm:text-right font-normal text-sm'}>Reward per block: <br/> <span className={'text-lg text-orange font-medium'}>{rewardPerBlock}</span></p>
                 </div>
                 <div className={'sm:flex justify-between items-center mt-4'}>
                     <p className={classList('text-white font-medium text-2xl',depositedValue>0?'opacity-100':'opacity-50')}>EARNED:<br/><span className={'text-orange'}>{depositedValue*3.12415.toFixed(2)} {secondCoinName}</span></p>

@@ -289,15 +289,11 @@ export default function Home() {
                         </div>
                         <div>
                             <ul className={'font-museo text-3xl font-semibold'}>
-                                <li className={'my-2 text-orange'}>30% to presale</li>
-                                <li className={'my-2 text-[#91E01E]'}>18% to liquidity</li>
-                                <li className={'my-2 text-[#CD1C6C]'}>8% PARTNERSHIP (locked)</li>
-                                <li className={'my-2 text-[#7A8CD3]'}>8% CEX Listing 1 (locked)</li>
-                                <li className={'my-2 text-[#C1F07E]'}>8% Staking rewards (locked)</li>
-                                <li className={'my-2 text-[#FAD683]'}>15% Ecosystem&Marketing (locked)</li>
-                                <li className={'my-2 text-[#E679AA]'}>7% Team token (locked)</li>
-                                <li className={'my-2 text-[#5A72D3]'}>5% others (locked)</li>
-                                <li className={'my-2 text-[#B0F054]'}>1% Airdrop (locked)</li>
+                                <li className={'my-2 text-orange'}>50% to presale </li>
+                                <li className={'my-2 text-[#91E01E]'}>30% to liquidity </li>
+                                <li className={'my-2 text-[#CD1C6C]'}>9% Staking rewards  </li>
+                                <li className={'my-2 text-[#5A72D3]'}>6% Farming pool</li>
+                                <li className={'my-2 text-[#B0F054]'}>5% Ecosystem&Marketing</li>
                             </ul>
                         </div>
                     </div>
@@ -371,8 +367,8 @@ export default function Home() {
                         <p className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>AUDIT</p>
                         <p className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>SAFU</p>
                         <p className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Docs</p>
-                        <p className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Telegram</p>
-                        <p className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Twitter</p>
+                        <a href={'https://t.me/web3farming_portal'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Telegram</a>
+                        <a href={'https://twitter.com/web3_Farm'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Twitter</a>
                     </div>
                 </div>
 

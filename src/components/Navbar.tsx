@@ -16,7 +16,7 @@ const Navbar = ({isHidden, setIsHidden, allowance, setAllowance, isAllowed, setI
 
     const links = [{
         name: 'Whitepaper',
-        url: '/'
+        url: 'https://web3farming.gitbook.io/web-3-farm.-1/'
     },
         {
             name: 'Roadmap',
