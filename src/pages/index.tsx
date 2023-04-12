@@ -146,7 +146,7 @@ export default function Home() {
                     <a id={'farm'} className={' text-white text-center pt-28 mb-10 text-2xl sm:text-6xl font-bold'}>Introducing
                         new <br/> Farming
                         platform</a>
-                    <div className={'grid gap-12 w-full grid-cols-1 sm:grid-cols-3'}>
+                    {account?<div className={'grid gap-12 w-full grid-cols-1 sm:grid-cols-3'}>
                         <Deposit boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
                                  secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}
                                  rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
@@ -174,7 +174,7 @@ export default function Home() {
                         <Deposit boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
                                  secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}
                                  rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
-                    </div>
+                    </div>:<p className={'text-white'}>Connect wallet to see available farm pools</p>}
 
                 </div>
                 <div className={'px-2 farm-booster-bg relative py-20 sm:px-32'}>
