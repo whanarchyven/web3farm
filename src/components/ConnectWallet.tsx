@@ -21,11 +21,15 @@ const ConnectWallet = ({account,setAccount, isAllowed, setIsAllowed, setAllowanc
 
     const connectToMetaMask = async () => {
         try {
+
+            if(window.ethereum.networkVersion!=97){
+                alert('Change network on testnet!')
+            }
             // Проверяем, установлен ли MetaMask в браузере
-            if (typeof window.ethereum !== 'undefined' && window.ethereum.request) {
+            else if (typeof window.ethereum !== 'undefined' && window.ethereum.request) {
                 // Подключаемся к MetaMask
                 const ethereum = window.ethereum
-                await ethereum.request({method: 'eth_requestAccounts'})
+                await ethereum.request({method: 'eth_requestAccounts'}).then((res)=>{console.log(res)},(err)=>{console.log(err)})
                 // Создаем экземпляр объекта Web3 и получаем адрес аккаунта
                 const web3 = new Web3(ethereum)
                 const accounts = await web3.eth.getAccounts()

@@ -30,13 +30,29 @@ export default function Home() {
 
     const contract = new ContractConnector()
 
+    const [userData,setUserData]=useState<any>(null)
+
+    const fetchUserData=async ()=>{
+        const result=await contract.userData();
+        setUserData(result)
+    }
+
+
+
 
     const boosters = [
-        'X2 ATOM BOOSTER',
-        'X3 ATOM BOOSTER',
-        'X4 ATOM BOOSTER',
-        'X5 ATOM BOOSTER',
+        'NO BOOSTER',
+        'X2 FARM BOOSTER',
+        'X3 FARM BOOSTER',
+        'X4 FARM BOOSTER',
+        'X5 FARM BOOSTER',
     ]
+
+    useEffect(()=>{
+        if(account){
+            fetchUserData()
+        }
+    },[account])
 
     return (
         <>
@@ -146,35 +162,35 @@ export default function Home() {
                     <a id={'farm'} className={' text-white text-center pt-28 mb-10 text-2xl sm:text-6xl font-bold'}>Introducing
                         new <br/> Farming
                         platform</a>
-                    {account?<div className={'grid gap-12 w-full grid-cols-1 sm:grid-cols-3'}>
-                        <Deposit boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
+                    <div className={'grid gap-12 w-full grid-cols-1 sm:grid-cols-3'}>
+                        <Deposit account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
                                  secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}
                                  rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
-                        <Deposit boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
+                        <Deposit account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
                                  secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}
                                  rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
-                        <Deposit boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
+                        <Deposit account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
                                  secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}
                                  rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
-                        <Deposit boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
+                        <Deposit account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
                                  secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}
                                  rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
-                        <Deposit boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
+                        <Deposit account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
                                  secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}
                                  rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
-                        <Deposit boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
+                        <Deposit account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
                                  secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}
                                  rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
-                        <Deposit boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
+                        <Deposit account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
                                  secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}
                                  rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
-                        <Deposit boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
+                        <Deposit account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
                                  secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}
                                  rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
-                        <Deposit boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
+                        <Deposit account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
                                  secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}
                                  rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
-                    </div>:<p className={'text-white'}>Connect wallet to see available farm pools</p>}
+                    </div>
 
                 </div>
                 <div className={'px-2 farm-booster-bg relative py-20 sm:px-32'}>
@@ -193,14 +209,12 @@ export default function Home() {
                     <img src={'/images/booster_sprite.png'} className={'absolute right-0'}/>
                     <div className={'grid grid-cols-1 mt-10 sm:grid-cols-2 w-full sm:w-3/4 gap-8 '}>
                         <FarmBooster boostIncrease={2} boostPercent={10} boostImage={'/images/atoms/x2.svg'} id={0}
-                                     supply={200}
                                      price={0.25}></FarmBooster>
                         <FarmBooster boostIncrease={3} boostPercent={30} boostImage={'/images/atoms/x3.svg'} id={1}
-                                     supply={100}
                                      price={0.50}></FarmBooster>
-                        <FarmBooster boostIncrease={4} boostPercent={40} boostImage={'/images/atoms/x4.svg'} supply={50} id={2}
+                        <FarmBooster boostIncrease={4} boostPercent={40} boostImage={'/images/atoms/x4.svg'} id={2}
                                      price={1.50}></FarmBooster>
-                        <FarmBooster boostIncrease={5} boostPercent={50} boostImage={'/images/atoms/x5.svg'} supply={25} id={3}
+                        <FarmBooster boostIncrease={5} boostPercent={50} boostImage={'/images/atoms/x5.svg'} id={3}
                                      price={5.0}></FarmBooster>
                     </div>
                 </div>
