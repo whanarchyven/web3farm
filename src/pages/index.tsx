@@ -380,7 +380,7 @@ export default function Home() {
                         <p className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>KYC</p>
                         <p className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>AUDIT</p>
                         <p className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>SAFU</p>
-                        <p className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Docs</p>
+                        <a href={'https://web3farming.gitbook.io/web-3-farm.-1/'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Docs</a>
                         <a href={'https://t.me/web3farming_portal'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Telegram</a>
                         <a href={'https://twitter.com/web3_Farm'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Twitter</a>
                     </div>
