@@ -203,7 +203,11 @@ const Deposit = ({
                     <div
                         className={classList('my-5 flex w-full justify-center')}>
                         <div
-                            className={'w-full sm:w-60 mb-2 cursor-pointer uppercase p-2 text-2xl bg-orange flex items-center text-white font-bold justify-center h-12 rounded-sm sm:mx-2 mx-0'}>
+                            className={'w-full sm:w-60 mb-2 cursor-pointer uppercase p-2 text-2xl bg-orange flex items-center text-white font-bold justify-center h-12 rounded-sm sm:mx-2 mx-0'} onClick={async ()=>{
+                                await contract.claim();
+                                const profit =await contract.viewUnpaid();
+                                setProfit(profit)
+                        }}>
                             COLLECT
                         </div>
                     </div>

@@ -19,11 +19,6 @@ class ContractConnector {
     staking = new web3.eth.Contract(this.stakingABI, this.stakingAddress);
 
 
-    async claimRewards() {
-        const accounts = await web3.eth.getAccounts();
-        await this.staking.methods.claim().send({from: accounts[0]});
-    }
-
     async stakeTokens(amount, useBooster, boosterId) {
         const accounts = await web3.eth.getAccounts();
         await this.staking.methods.participate(amount, useBooster, boosterId).send({from: accounts[0]});

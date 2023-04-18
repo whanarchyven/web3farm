@@ -103,18 +103,18 @@ export default function Home() {
                                 </span></p>
                             </div>
                             <div className={'w-3/4 mt-4 flex items-center justify-between'}>
-                                <div
-                                    className={'px-4 w-full mr-2 py-2 bg-orange rounded-sm flex items-center text-white text-2xl justify-center font-bold'}>
+                                <a href={'https://pinksale.notion.site/WEB3-FARM-KYC-Verification-8b57ce0f2b794066b9dabce9047c31de'}
+                                    className={'cursor-pointer px-4 w-full mr-2 py-2 bg-orange rounded-sm flex items-center text-white text-2xl justify-center font-bold'}>
                                     KYC
-                                </div>
-                                <div
-                                    className={'px-4 w-full mx-2 py-2 bg-orange rounded-sm flex items-center text-white text-2xl justify-center font-bold'}>
+                                </a>
+                                <a href={'https://blocksafu.com/project-detail/0xC2dEB6E28a09bBA1A5D1d462a303C26fB8b51B8a'}
+                                    className={'cursor-pointer px-4 w-full mx-2 py-2 bg-orange rounded-sm flex items-center text-white text-2xl justify-center font-bold'}>
                                     AUDIT
-                                </div>
-                                <div
-                                    className={'px-4 w-full mx-2 py-2 bg-orange rounded-sm flex items-center text-white text-2xl justify-center font-bold'}>
+                                </a>
+                                <a
+                                    className={'cursor-pointer px-4 w-full mx-2 py-2 bg-orange rounded-sm flex items-center text-white text-2xl justify-center font-bold'}>
                                     SAFU
-                                </div>
+                                </a>
                             </div>
                         </div>
                         <div className={'sm:col-span-3 flex justify-center sm:justify-end'}>
