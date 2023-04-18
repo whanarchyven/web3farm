@@ -16,12 +16,13 @@ interface Interface {
     timeTillEnd: number,
     boosters?: string[],
     account: string,
-    userData: any
+    userData: any,
+    setUserData?:any,
 }
 
 const Deposit = ({
                      firstCoinIcon,
-                     boosters,
+                     boosters, setUserData,
                      secondCoinIcon,
                      secondCoinName,
                      firstCoinName,
@@ -67,10 +68,10 @@ const Deposit = ({
     useEffect(() => {
         const func = async () => {
             if (window.ethereum.networkVersion == 97) {
-                contract.endTime(setTimeTillEnd)
-                contract.allowance(maxAllowToken, setMaxAllowToken)
-                contract.minStakingAmount(setMinAllowToken)
-                contract.rewardPerSecond(setRewardPerBlock)
+                await contract.endTime(setTimeTillEnd)
+                await contract.allowance(maxAllowToken, setMaxAllowToken)
+                await contract.minStakingAmount(setMinAllowToken)
+                await contract.rewardPerSecond(setRewardPerBlock)
                 const prof = await contract.viewUnpaid()
                 console.log(prof)
                 setProfit(prof)
@@ -209,6 +210,17 @@ const Deposit = ({
                                 setProfit(profit)
                         }}>
                             COLLECT
+                        </div>
+                        <div
+                            className={'w-full sm:w-60 mb-2 cursor-pointer uppercase p-2 text-2xl bg-orange flex items-center text-white font-bold justify-center h-12 rounded-sm sm:mx-2 mx-0'} onClick={async ()=>{
+                            await contract.unlock();
+                            const profit =await contract.viewUnpaid();
+                            setProfit(profit)
+                            if(setUserData){
+                                await setUserData();
+                            }
+                        }}>
+                            UNLOCK
                         </div>
                     </div>
                 </div>
