@@ -59,8 +59,6 @@ const Deposit = ({
             await ethereum.request({method: 'eth_requestAccounts'})
             // Создаем экземпляр объекта Web3 и получаем адрес аккаунта
             const web3 = new Web3(ethereum)
-            console.log(window.ethereum.networkVersion, 'window.ethereum.networkVersion');
-            const accounts = await web3.eth.getAccounts()
             setWeb3(web3)
         }
     }
@@ -173,17 +171,19 @@ const Deposit = ({
                                                setCurrentValue={setBooster}></SelectOptionsList>
                         </div>
                         <div
-                            className={'sm:w-40 mt-4 sm:mt-0 cursor-pointer uppercase p-2 text-xs bg-orange flex items-center text-white font-bold justify-center h-9 rounded-sm sm:ml-2'}
+                            className={classList('sm:w-40 mt-4 sm:mt-0  uppercase p-2 text-xs bg-orange flex items-center text-white font-bold justify-center h-9 rounded-sm sm:ml-2',!userData?.hasBooster||booster=='NO BOOSTER'?'opacity-50':'cursor-pointer')}
                             onClick={async () => {
-                                await contract.setApprovalForAll()
+                                if(!userData?.hasBooster||booster=='NO BOOSTER'){
+                                    await contract.setApprovalForAll()
+                                }
                             }
                             }>
                             Approve booster
                         </div>
                         <div
-                            className={'sm:w-40 mt-4 sm:mt-0 cursor-pointer uppercase p-2 text-xs bg-orange flex items-center text-white font-bold justify-center h-9 rounded-sm sm:ml-2'}
+                            className={classList('sm:w-40 mt-4 sm:mt-0 uppercase p-2 text-xs bg-orange flex items-center text-white font-bold justify-center h-9 rounded-sm sm:ml-2',booster=='NO BOOSTER'?'opacity-50':'cursor-pointer')}
                         onClick={()=>{
-                            if(booster!='NO BOOSTER'){
+                            if(booster!='NO BOOSTER'||!userData?.hasBooster){
                                 setChosenBooster(translateBooster(booster))
                             }
                         }}

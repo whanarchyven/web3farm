@@ -106,8 +106,7 @@ class ContractConnector {
 
     async boosterTotalSupply(id) {
         const supply = await this.erc1155.methods.totalSupply(id).call((err, res) => {
-            console.log(err);
-            console.log(res)
+
         })
         return supply
     }
@@ -115,8 +114,7 @@ class ContractConnector {
 
     async boosterMaxSupply(id) {
         const supply = await this.erc1155.methods.maxSupply(id).call((err, res) => {
-            console.log(err);
-            console.log(res)
+
         })
         return supply
     }
@@ -124,8 +122,7 @@ class ContractConnector {
     async setApprovalForAll() {
         const accounts = await web3.eth.getAccounts();
         await this.erc1155.methods.setApprovalForAll(this.stakingAddress, true).send({from: accounts[0]}, (err, res) => {
-            console.log(err);
-            console.log(res)
+
         })
     }
 

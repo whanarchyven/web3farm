@@ -207,13 +207,13 @@ export default function Home() {
                         website.</p>
                     <img src={'/images/booster_sprite.png'} className={'absolute right-0'}/>
                     <div className={'grid grid-cols-1 mt-10 sm:grid-cols-2 w-full sm:w-3/4 gap-8 '}>
-                        <FarmBooster boostIncrease={2} boostPercent={10} boostImage={'/images/atoms/x2.svg'} id={0}
+                        <FarmBooster account={account} boostIncrease={2} boostPercent={10} boostImage={'/images/atoms/x2.svg'} id={0}
                                      price={0.25}></FarmBooster>
-                        <FarmBooster boostIncrease={3} boostPercent={30} boostImage={'/images/atoms/x3.svg'} id={1}
+                        <FarmBooster account={account} boostIncrease={3} boostPercent={30} boostImage={'/images/atoms/x3.svg'} id={1}
                                      price={0.50}></FarmBooster>
-                        <FarmBooster boostIncrease={4} boostPercent={40} boostImage={'/images/atoms/x4.svg'} id={2}
+                        <FarmBooster account={account} boostIncrease={4} boostPercent={40} boostImage={'/images/atoms/x4.svg'} id={2}
                                      price={1.50}></FarmBooster>
-                        <FarmBooster boostIncrease={5} boostPercent={50} boostImage={'/images/atoms/x5.svg'} id={3}
+                        <FarmBooster account={account} boostIncrease={5} boostPercent={50} boostImage={'/images/atoms/x5.svg'} id={3}
                                      price={5.0}></FarmBooster>
                     </div>
                 </div>

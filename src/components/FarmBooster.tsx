@@ -6,29 +6,28 @@ interface FarmBoosterInterface {
     boostPercent: number,
     boostImage: string,
     price: number,
-    id: number
+    id: number,
+    account?:string
 }
 
-const FarmBooster = ({boostIncrease, boostPercent, boostImage, price, id}: FarmBoosterInterface) => {
+const FarmBooster = ({boostIncrease, account, boostPercent, boostImage, price, id}: FarmBoosterInterface) => {
 
     const contract = new ContractConnector()
 
     const [supply, setSupply] = useState<any>(null)
 
     const fetchSupply = async () => {
-        if (window.ethereum.networkVersion == 97) {
-            const minted = await contract.boosterTotalSupply(id)
-            console.log(minted)
-            const all = await contract.boosterMaxSupply(id)
-            console.log(all)
-            setSupply(all - minted)
-        }
+        const minted = await contract.boosterTotalSupply(id)
+        // console.log(minted)
+        const all = await contract.boosterMaxSupply(id)
+        // console.log(all)
+        setSupply(all - minted)
     }
 
     useEffect(() => {
         // contract.mintPrice(id)
         fetchSupply();
-    }, [])
+    }, [account])
 
 
     return (
