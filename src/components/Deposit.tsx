@@ -78,7 +78,7 @@ const Deposit = ({
                     setProfit(prof)
                 }
                 else {
-                    console.log(window.ethereum)
+                    console.log(window.ethereum['networkVersion'])
                 }
             } catch (e) {
                 console.log(e)
