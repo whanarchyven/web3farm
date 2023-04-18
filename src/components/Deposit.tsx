@@ -75,6 +75,7 @@ const Deposit = ({
                     await contract.rewardPerSecond(setRewardPerBlock)
                     const prof = await contract.viewUnpaid()
                     console.log(prof)
+                    console.log('Not null')
                     setProfit(prof)
                 }
                 else {
