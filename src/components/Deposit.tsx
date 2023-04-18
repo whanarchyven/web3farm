@@ -77,6 +77,10 @@ const Deposit = ({
                     console.log(prof)
                     setProfit(prof)
                 }
+                else {
+                    console.log('UNDEFINED WINDOW ETHER')
+                    console.log(window.ethereum)
+                }
             } catch (e) {
                 console.log(e)
                 func();

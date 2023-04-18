@@ -17,7 +17,6 @@ const inter = Inter({subsets: ['latin']})
 
 export default function Home() {
 
-
     const [navbarHidden, setNavbarHidden] = useState(true)
 
     const [account, setAccount] = useState<string>(null)
