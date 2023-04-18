@@ -68,7 +68,7 @@ const Deposit = ({
     useEffect(() => {
         const func = async () => {
             try {
-                if (window.ethereum.networkVersion == 97) {
+                if (window.ethereum['networkVersion'] == 97) {
                     await contract.endTime(setTimeTillEnd)
                     await contract.allowance(maxAllowToken, setMaxAllowToken)
                     await contract.minStakingAmount(setMinAllowToken)
