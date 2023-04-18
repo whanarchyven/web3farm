@@ -53,7 +53,7 @@ const Deposit = ({
     const [web3, setWeb3] = useState<Web3>(null)
 
     const settingWeb3 = async () => {
-        if (typeof window.ethereum !== 'undefined' && window.ethereum.request && window.ethereum.networkVersion == '97') {
+        if (typeof window.ethereum !== 'undefined' && window.ethereum.request && window.ethereum.networkVersion == 97) {
             // Подключаемся к MetaMask
             const ethereum = window.ethereum
             await ethereum.request({method: 'eth_requestAccounts'})
@@ -68,7 +68,7 @@ const Deposit = ({
     useEffect(() => {
         const func = async () => {
             try {
-                if (window.ethereum.networkVersion == '97') {
+                if (window.ethereum.networkVersion == 97) {
                     await contract.endTime(setTimeTillEnd)
                     await contract.allowance(maxAllowToken, setMaxAllowToken)
                     await contract.minStakingAmount(setMinAllowToken)
