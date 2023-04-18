@@ -78,12 +78,10 @@ const Deposit = ({
                     setProfit(prof)
                 }
                 else {
-                    console.log('UNDEFINED WINDOW ETHER')
-                    console.log(window.ethereum.c.networkVersion)
+                    console.log(window.ethereum)
                 }
             } catch (e) {
                 console.log(e)
-                func();
             }
         }
         func()
