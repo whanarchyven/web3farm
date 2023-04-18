@@ -84,7 +84,9 @@ const Deposit = ({
                 console.log(e)
             }
         }
-        func()
+        if(account){
+            func()
+        }
     }, [])
 
 
