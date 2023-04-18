@@ -12,6 +12,17 @@ const nextConfig = {
   images:{
     unoptimized : true
   },
+  headers: () => [
+    {
+      source: '/:path*',
+      headers: [
+        {
+          key: 'Cache-Control',
+          value: 'no-store',
+        },
+      ],
+    },
+  ],
 }
 
 module.exports = nextConfig
