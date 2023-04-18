@@ -53,7 +53,7 @@ const Deposit = ({
     const [web3, setWeb3] = useState<Web3>(null)
 
     const settingWeb3 = async () => {
-        if (typeof window.ethereum !== 'undefined' && window.ethereum.request && window.ethereum.networkVersion == 97) {
+        if (typeof window.ethereum !== 'undefined' && window.ethereum.request) {
             // Подключаемся к MetaMask
             const ethereum = window.ethereum
             await ethereum.request({method: 'eth_requestAccounts'})
@@ -183,7 +183,9 @@ const Deposit = ({
                         <div
                             className={'sm:w-40 mt-4 sm:mt-0 cursor-pointer uppercase p-2 text-xs bg-orange flex items-center text-white font-bold justify-center h-9 rounded-sm sm:ml-2'}
                         onClick={()=>{
-                            setChosenBooster(translateBooster(booster))
+                            if(booster!='NO BOOSTER'){
+                                setChosenBooster(translateBooster(booster))
+                            }
                         }}
                         >
                             Apply booster
