@@ -68,19 +68,18 @@ const Deposit = ({
     useEffect(() => {
         const func = async () => {
             try {
-                if (await window.ethereum['networkVersion'] == 97) {
-                    await contract.endTime(setTimeTillEnd)
-                    await contract.allowance(maxAllowToken, setMaxAllowToken)
-                    await contract.minStakingAmount(setMinAllowToken)
-                    await contract.rewardPerSecond(setRewardPerBlock)
-                    const prof = await contract.viewUnpaid()
-                    console.log(prof)
-                    console.log('Not null')
-                    setProfit(prof)
-                }
-                else {
-                    console.log(window.ethereum['networkVersion'])
-                }
+                const endTime=await contract.endTime()
+                console.log('TIME')
+                console.log(endTime)
+                setTimeTillEnd(Number(endTime))
+                const maxAllow=await contract.allowance()
+                setMaxAllowToken(maxAllow)
+                const minStacking=await contract.minStakingAmount()
+                setMinAllowToken(minStacking)
+                const reward=await contract.rewardPerSecond()
+                setRewardPerBlock(reward)
+                const prof = await contract.viewUnpaid()
+                setProfit(prof)
             } catch (e) {
                 console.log(e)
             }
@@ -88,7 +87,7 @@ const Deposit = ({
         if(account){
             func()
         }
-    }, [])
+    }, )
 
 
     useEffect(() => {

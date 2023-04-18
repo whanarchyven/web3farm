@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import Web3 from 'web3'
 import ContractConnector from "@/contract/contract";
+import is from "@sindresorhus/is";
+import all = is.all;
 
 interface ConnectWalletInterface {
     account:string,
@@ -50,7 +52,8 @@ const ConnectWallet = ({account,setAccount, isAllowed, setIsAllowed, setAllowanc
                     }
 
                     if (!isAllowed) {
-                        const allowanceTemp = contract.allowance(allowance, setAllowance)
+                        const allowanceTemp = await contract.allowance()
+                        setAllowance(allowanceTemp)
                         console.log('AAAAAAA')
                         console.log(allowance)
                     }
