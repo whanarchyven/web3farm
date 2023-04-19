@@ -56,7 +56,6 @@ class ContractConnector {
     }
 
     async isFinished() {
-        const accounts = await web3.eth.getAccounts();
         await this.staking.methods.startTime().call();
     }
 
@@ -83,7 +82,8 @@ class ContractConnector {
 
     async approve(amount_wei) {
         const accounts = await web3.eth.getAccounts();
-        await this.stakedToken.methods.approve(this.stakingAddress, amount_wei).send({from: accounts[0]})
+        const approving=await this.stakedToken.methods.approve(this.stakingAddress, amount_wei).send({from: accounts[0]})
+        return approving
     }
 
     async allowance() {

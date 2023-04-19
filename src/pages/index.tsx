@@ -162,33 +162,33 @@ export default function Home() {
                         new <br/> Farming
                         platform</a>
                     <div className={'grid gap-12 w-full grid-cols-1 sm:grid-cols-3'}>
-                        <Deposit type={'bnb'} setUserData={fetchUserData} account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
-                                 secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}
+                        <Deposit needApprove={false} type={'bnbToBnb'} fetchUserData={fetchUserData} account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
+                                 secondCoinName={'BNB'} secondCoinIcon={'/images/coins/bnb.svg'}
                                  rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
-                        <Deposit type={'test'} setUserData={fetchUserData} account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
-                                 secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}
+                        <Deposit needApprove={false} type={'bnbToUsdt'} fetchUserData={fetchUserData} account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
+                                 secondCoinName={'USDT'} secondCoinIcon={'/images/coins/usdt.svg'}
                                  rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
-                        <Deposit type={'test'} setUserData={fetchUserData} account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
-                                 secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}
+                        <Deposit needApprove={true} type={'busdToBnb'} fetchUserData={fetchUserData} account={account} userData={userData} boosters={boosters} firstCoinName={'BUSD'} firstCoinIcon={'/images/coins/busd.svg'}
+                                 secondCoinName={'BNB'} secondCoinIcon={'/images/coins/bnb.svg'}
                                  rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
-                        <Deposit type={'test'} setUserData={fetchUserData} account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
-                                 secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}
-                                 rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
-                        <Deposit type={'test'} setUserData={fetchUserData} account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
-                                 secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}
-                                 rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
-                        <Deposit type={'test'} setUserData={fetchUserData} account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
-                                 secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}
-                                 rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
-                        <Deposit type={'test'} setUserData={fetchUserData} account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
-                                 secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}
-                                 rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
-                        <Deposit type={'test'} setUserData={fetchUserData} account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
-                                 secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}
-                                 rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
-                        <Deposit type={'test'} setUserData={fetchUserData} account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
-                                 secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}
-                                 rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
+                        {/*<Deposit needApprove={true} type={'test'} setUserData={fetchUserData} account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}*/}
+                        {/*         secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}*/}
+                        {/*         rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>*/}
+                        {/*<Deposit needApprove={true} type={'test'} setUserData={fetchUserData} account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}*/}
+                        {/*         secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}*/}
+                        {/*         rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>*/}
+                        {/*<Deposit needApprove={true} type={'test'} setUserData={fetchUserData} account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}*/}
+                        {/*         secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}*/}
+                        {/*         rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>*/}
+                        {/*<Deposit needApprove={true} type={'test'} setUserData={fetchUserData} account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}*/}
+                        {/*         secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}*/}
+                        {/*         rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>*/}
+                        {/*<Deposit needApprove={true} type={'test'} setUserData={fetchUserData} account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}*/}
+                        {/*         secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}*/}
+                        {/*         rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>*/}
+                        {/*<Deposit needApprove={true} type={'test'} setUserData={fetchUserData} account={account} userData={userData} boosters={boosters} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}*/}
+                        {/*         secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}*/}
+                        {/*         rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>*/}
                     </div>
 
                 </div>
