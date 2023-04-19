@@ -4,6 +4,7 @@ import CountdownTimer from "@/components/CountdownTimer";
 import SelectOptionsList from "@/components/SelectOption";
 import {classList} from "@/helpers/classList";
 import ContractConnector from "@/contract/contract";
+import BnBContractConnector from "@/contract/bnbContractPool"
 import Web3 from "web3";
 import weiToDecimal from "@/helpers/weiToDecimal";
 
@@ -18,6 +19,7 @@ interface Interface {
     account: string,
     userData: any,
     setUserData?:any,
+    type:'test'|'bnb'
 }
 
 const Deposit = ({
@@ -27,7 +29,7 @@ const Deposit = ({
                      secondCoinName,
                      firstCoinName,
                      account,
-                     userData
+                     userData, type
                  }: Interface) => {
 
     const [enteredValue, setEnteredValue] = useState('')
@@ -47,7 +49,7 @@ const Deposit = ({
     const [profit, setProfit] = useState(1)
 
 
-    const contract = new ContractConnector()
+    const contract = type=='test'?new ContractConnector():new BnBContractConnector()
 
 
     const [web3, setWeb3] = useState<Web3>(null)
@@ -120,10 +122,10 @@ const Deposit = ({
         <div className={'w-full rounded-xl border-[#A600E3] border-4 deposit-bg p-4'}>
             <div className={'w-full flex sm:flex-nowrap flex-wrap items-center justify-between'}>
                 <div className={'flex items-center'}>
-                    <p className={'font-bold text-2xl text-orange uppercase'}>{firstCoinName}</p>
+                    <p className={'font-bold text-2xl text-orange uppercase'}>{firstCoinName} <span className={'text-xs'}>{type}</span></p>
                     <img className={'w-6 ml-2 aspect-square'} src={firstCoinIcon}/>
                 </div>
-                <div className={'w-20 h-12 relative'}>
+                <div className={'w-12 h-12 relative'}>
                     <Image src={'/images/arrow.svg'} alt={'air'} layout={'fill'}></Image>
                 </div>
                 <div className={'flex items-center'}>
@@ -149,18 +151,11 @@ const Deposit = ({
                         onClick={() => {
                             if (web3) {
                                 const total_amount = web3.utils.toWei(enteredValue, 'ether')
-                                const test = contract.stakeTokens(total_amount, chosenBooster.boost>0?true:false, chosenBooster.id)
+                                const test = type=="test"?contract.stakeTokens(total_amount, chosenBooster.boost>0?true:false, chosenBooster.id,{value:total_amount}):contract.stakeTokens(total_amount, chosenBooster.boost>0?true:false, chosenBooster.id,{value:total_amount})
                             }
                         }}>
                         Deposit +
                     </div>
-                    {/*<div*/}
-                    {/*    className={classList('w-full sm:w-full cursor-pointer uppercase p-1 text-xs bg-orange flex items-center text-white font-bold justify-center h-9 rounded-sm my-3 sm:my-0 sm:ml-2')}*/}
-                    {/*    onClick={() => {*/}
-                    {/*        setDepositedValue(weiToDecimal(depositedValue)+Number(enteredValue))*/}
-                    {/*    }}>*/}
-                    {/*    Deposit +*/}
-                    {/*</div>*/}
                 </div>
                 <div className={classList('mt-5')}>
                     <p className={'font-medium text-orange'}>Select Booster:</p>
