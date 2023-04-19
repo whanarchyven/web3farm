@@ -46,7 +46,7 @@ const Deposit = ({
 
     const [rewardPerBlock, setRewardPerBlock] = useState(0)
 
-    const [profit, setProfit] = useState(1)
+    const [profit, setProfit] = useState(0)
 
 
     const contract = type=='test'?new ContractConnector():new BnBContractConnector()
