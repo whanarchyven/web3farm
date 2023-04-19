@@ -110,7 +110,9 @@ const Deposit = ({
 
 
     useEffect(() => {
-        settingWeb3()
+        if(account){
+            settingWeb3()
+        }
     }, [])
 
     useEffect(() => {

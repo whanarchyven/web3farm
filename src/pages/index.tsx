@@ -207,13 +207,13 @@ export default function Home() {
                         website.</p>
                     <img src={'/images/booster_sprite.png'} className={'absolute right-0'}/>
                     <div className={'grid grid-cols-1 mt-10 sm:grid-cols-2 w-full sm:w-3/4 gap-8 '}>
-                        <FarmBooster account={account} boostIncrease={2} boostPercent={10} boostImage={'/images/atoms/x2.svg'} id={0}
-                                     price={0.25}></FarmBooster>
-                        <FarmBooster account={account} boostIncrease={3} boostPercent={30} boostImage={'/images/atoms/x3.svg'} id={1}
-                                     price={0.50}></FarmBooster>
-                        <FarmBooster account={account} boostIncrease={4} boostPercent={40} boostImage={'/images/atoms/x4.svg'} id={2}
-                                     price={1.50}></FarmBooster>
-                        <FarmBooster account={account} boostIncrease={5} boostPercent={50} boostImage={'/images/atoms/x5.svg'} id={3}
+                        <FarmBooster maxSupply={300} account={account} boostIncrease={2} boostPercent={50} boostImage={'/images/atoms/bronze.png'} id={0}
+                                     price={0.75}></FarmBooster>
+                        <FarmBooster maxSupply={200} account={account} boostIncrease={3} boostPercent={100} boostImage={'/images/atoms/silver.png'} id={1}
+                                     price={1.5}></FarmBooster>
+                        <FarmBooster maxSupply={100} account={account} boostIncrease={4} boostPercent={200} boostImage={'/images/atoms/gold.png'} id={2}
+                                     price={2.5}></FarmBooster>
+                        <FarmBooster maxSupply={50} account={account} boostIncrease={5} boostPercent={500} boostImage={'/images/atoms/diamond.png'} id={3}
                                      price={5.0}></FarmBooster>
                     </div>
                 </div>

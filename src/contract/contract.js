@@ -10,7 +10,7 @@ class ContractConnector {
 
     rewardTokenAddress = '0xE44fa14881b192Be661ad5ec23227B9924079f80';
     stakedTokenAddress = '0x7fE57743b2967EB43E1F8a949387144569D5481D';
-    erc1155Address = '0x6e58824a169452ae3dBD77F32ef44199B403221E';
+    erc1155Address = '0xBE5F6217686aC5dA5dE7F1234E780E782b52877A';
     stakingAddress = '0x604e275876Be53fFD2165dDdb481187e42474aea';
 
     rewardToken = new web3.eth.Contract(this.rewardTokenABI, this.rewardTokenAddress);
