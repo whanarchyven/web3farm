@@ -210,21 +210,25 @@ const Deposit = ({
                     <div
                         className={classList('my-5 flex w-full justify-center')}>
                         <div
-                            className={'w-full sm:w-60 mb-2 cursor-pointer uppercase p-2 text-2xl bg-orange flex items-center text-white font-bold justify-center h-12 rounded-sm sm:mx-2 mx-0'} onClick={async ()=>{
-                                await contract.claim();
-                                const profit =await contract.viewUnpaid();
-                                setProfit(profit)
+                            className={classList('w-full sm:w-60 mb-2 uppercase p-2 text-2xl bg-orange flex items-center text-white font-bold justify-center h-12 rounded-sm sm:mx-2 mx-0',profit>0?'cursor-pointer':'opacity-50')} onClick={async ()=>{
+                                if(profit>0){
+                                    await contract.claim();
+                                    const profitTemp =await contract.viewUnpaid();
+                                    setProfit(profitTemp)
+                                }
                         }}>
                             COLLECT
                         </div>
                         <div
-                            className={'w-full sm:w-60 mb-2 cursor-pointer uppercase p-2 text-2xl bg-orange flex items-center text-white font-bold justify-center h-12 rounded-sm sm:mx-2 mx-0'} onClick={async ()=>{
-                            await contract.unlock();
-                            const profit =await contract.viewUnpaid();
-                            setProfit(profit)
-                            if(setUserData){
-                                await setUserData();
-                            }
+                            className={classList('w-full sm:w-60 mb-2 uppercase p-2 text-2xl bg-orange flex items-center text-white font-bold justify-center h-12 rounded-sm sm:mx-2 mx-0',depositedValue+weiToDecimal(userData?.amount)>0?'cursor-pointer':'opacity-50')} onClick={async ()=>{
+                                if(depositedValue+weiToDecimal(userData?.amount)>0){
+                                    await contract.unlock();
+                                    const profit =await contract.viewUnpaid();
+                                    setProfit(profit)
+                                    if(setUserData){
+                                        await setUserData();
+                                    }
+                                }
                         }}>
                             UNLOCK
                         </div>
