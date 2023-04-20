@@ -9,7 +9,7 @@ interface countdownInterface {
 }
 
 // Random component
-const Completionist = () => <span>Selling start!</span>;
+const Completionist = () => <span>Selling start!{}</span>;
 
 // Renderer callback with condition
 
@@ -32,7 +32,7 @@ const CountdownTimer = ({time, timeLimits, prefix}:countdownInterface) => {
 
     return (
         <Countdown
-            date={Date.now() + time}
+            date={Date.now()+(time-(Date.now()/1000))*1000}
             renderer={renderer}
         />
     );
