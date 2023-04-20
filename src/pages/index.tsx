@@ -198,10 +198,10 @@ export default function Home() {
                         Allows you to increase the profitability of farming in farming pools and is available in four
                         types:
                         <br/><br/>
-                        1. adds 10% to farming<br/>
-                        2. adds 30% to farming<br/>
-                        3. adds 40% to farming<br/>
-                        4. adds 50% to farming<br/><br/>
+                        1. bronze adds 50% to farming<br/>
+                        2. silver adds 100% to farming<br/>
+                        3. gold adds 200% to farming<br/>
+                        4. diamond adds 500% to farming<br/><br/>
 
                         Each NFT booster has its own unique characteristics. These boosters can be purchased on our
                         website.</p>
