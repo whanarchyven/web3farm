@@ -40,7 +40,7 @@ const Deposit = ({
     const [booster, setBooster] = useState(boosters ? boosters[0] : 'You have not boosters')
 
 
-    const [timeTillEnd, setTimeTillEnd] = useState(0)
+    const [timeTillEnd, setTimeTillEnd] = useState<number>(null)
 
     const [maxAllowToken, setMaxAllowToken] = useState(0)
 
@@ -95,7 +95,9 @@ const Deposit = ({
         try {
             console.log('FETCHING POOL DATA...')
             const endTime=await contract.endTime()
-            setTimeTillEnd(Number(endTime))
+            if(timeTillEnd==null){
+                setTimeTillEnd(Number(endTime))
+            }
             const maxAllow=await contract.allowance()
             setMaxAllowToken(maxAllow)
             const minStacking=await contract.minStakingAmount()
@@ -150,6 +152,7 @@ const Deposit = ({
         }
     }
 
+    const x=timeTillEnd
 
     return (
         <div className={'w-full rounded-xl border-[#A600E3] border-4 deposit-bg p-4'}>
@@ -250,8 +253,8 @@ const Deposit = ({
                             className={'text-orange'}>{weiToDecimal(profit)} {secondCoinName}</span></p>
 
                         <p className={'text-white text-right font-normal text-sm'}>Time till block end: <br/> <span
-                            className={'text-2xl text-orange font-medium'}><CountdownTimer timeLimits={"seconds"}
-                                                                                           time={timeTillEnd ? timeTillEnd : 0}/></span>
+                            className={'text-2xl text-orange font-medium'}>{timeTillEnd?<CountdownTimer timeLimits={"seconds"}
+                                                                                                        time={timeTillEnd}/>:'0'}</span>
                         </p>
                     </div>
 
