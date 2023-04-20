@@ -19,24 +19,23 @@ interface Interface {
     timeTillEnd: number,
     boosters?: string[],
     account: string,
-    userData: any,
-    fetchUserData?:any,
     needApprove:boolean
     type:'test'|'bnbToBnb'|'bnbToUsdt'|'busdToBnb'
 }
 
 const Deposit = ({
                      firstCoinIcon,
-                     boosters, fetchUserData,
+                     boosters,
                      secondCoinIcon,
                      secondCoinName,
                      firstCoinName,
                      account,
-                     userData, needApprove, type
+                      needApprove, type
                  }: Interface) => {
 
     const [enteredValue, setEnteredValue] = useState('')
     const [depositedValue, setDepositedValue] = useState(0)
+
 
     const [booster, setBooster] = useState(boosters ? boosters[0] : 'You have not boosters')
 
@@ -64,6 +63,19 @@ const Deposit = ({
 
 
     const contract = translateToken(type)
+
+    const [userData,setUserData]=useState<any>(null)
+
+    const fetchUserData=async ()=>{
+        const result=await contract.userData();
+        setUserData(result)
+    }
+
+    useEffect(()=>{
+        if(account){
+            fetchUserData()
+        }
+    })
 
 
     const [web3, setWeb3] = useState<Web3>(null)
