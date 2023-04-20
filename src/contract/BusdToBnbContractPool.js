@@ -104,6 +104,12 @@ class BusdToBnbContractPool {
         return price
     }
 
+    async getUserBoosters(){
+        const accounts = await web3.eth.getAccounts();
+        const boosters = await this.erc1155.methods.balanceOfBatch([accounts[0],accounts[0],accounts[0],accounts[0]], [0,1,2,3]).call()
+        return boosters
+    }
+
     async boosterTotalSupply(id) {
         const supply = await this.erc1155.methods.totalSupply(id).call((err, res) => {
 

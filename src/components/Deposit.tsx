@@ -17,7 +17,6 @@ interface Interface {
     secondCoinIcon: string,
     rewardPerBlock: number,
     timeTillEnd: number,
-    boosters?: string[],
     account: string,
     needApprove:boolean
     type:'test'|'bnbToBnb'|'bnbToUsdt'|'busdToBnb'
@@ -25,7 +24,6 @@ interface Interface {
 
 const Deposit = ({
                      firstCoinIcon,
-                     boosters,
                      secondCoinIcon,
                      secondCoinName,
                      firstCoinName,
@@ -37,7 +35,8 @@ const Deposit = ({
     const [depositedValue, setDepositedValue] = useState(0)
 
 
-    const [booster, setBooster] = useState(boosters ? boosters[0] : 'You have not boosters')
+    const [boosters, setBoosters] = useState<Array<string>>([])
+    const [booster,setBooster]=useState('NO BOOSTER')
 
 
     const [timeTillEnd, setTimeTillEnd] = useState<number>(null)
@@ -122,7 +121,6 @@ const Deposit = ({
         }
     }, )
 
-
     useEffect(() => {
         if(account){
             settingWeb3()
@@ -139,20 +137,47 @@ const Deposit = ({
 
     const translateBooster = (booster: string) => {
         switch (booster) {
-            case 'X2 FARM BOOSTER':
+            case 'BRONZE FARM BOOSTER':
                 return {id:0,boost:50}
-            case 'X3 FARM BOOSTER':
+            case 'SILVER FARM BOOSTER':
                 return {id:1,boost:100}
-            case 'X4 FARM BOOSTER':
+            case 'GOLD FARM BOOSTER':
                 return {id:2,boost:200}
-            case 'X5 FARM BOOSTER':
+            case 'DIAMOND FARM BOOSTER':
                 return {id:3,boost:500}
             default : return ''
 
         }
     }
 
-    const x=timeTillEnd
+
+    const translateBoosterToText=(booster:number)=>{
+        switch (booster) {
+            case 0: return 'BRONZE FARM BOOSTER'
+            case 1: return 'SILVER FARM BOOSTER'
+            case 2: return 'GOLD FARM BOOSTER'
+            case 3: return 'DIAMOND FARM BOOSTER'
+            default: return 'NO BOOSTER'
+        }
+    }
+
+    const fetchUserBalance=async ()=>{
+        if(account){
+            const balance=await contract.getUserBoosters()
+            for(let i=0;i<4;i++){
+                if(balance[i]!='0'){
+                    const temp=[...boosters];
+                    temp.push(translateBoosterToText(i))
+                    setBoosters(temp)
+                    // setBooster([...booster,translateBoosterToText(i)])
+                }
+            }
+        }
+    }
+
+    useEffect(()=>{
+        fetchUserBalance()
+    },[account])
 
     return (
         <div className={'w-full rounded-xl border-[#A600E3] border-4 deposit-bg p-4'}>
@@ -214,7 +239,7 @@ const Deposit = ({
                     <div className={'sm:flex justify-between items-center'}>
                         <div>
                             <SelectOptionsList currentValue={booster}
-                                               variants={boosters ? boosters : ['X1 ATOM BOOSTER']}
+                                               variants={[...boosters,'NO BOOSTER']}
                                                setCurrentValue={setBooster}></SelectOptionsList>
                         </div>
                         <div

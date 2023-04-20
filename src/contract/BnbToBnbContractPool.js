@@ -128,6 +128,12 @@ class BnbToBnbContractPool {
         })
     }
 
+    async getUserBoosters(){
+        const accounts = await web3.eth.getAccounts();
+        const boosters = await this.erc1155.methods.balanceOfBatch([accounts[0],accounts[0],accounts[0],accounts[0]], [0,1,2,3]).call()
+        return boosters
+    }
+
 
     async mintBooster(boosterId, amount) {
         const accounts = await web3.eth.getAccounts();
