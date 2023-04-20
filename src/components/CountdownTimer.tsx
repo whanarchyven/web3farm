@@ -9,7 +9,7 @@ interface countdownInterface {
 }
 
 // Random component
-const Completionist = () => <span>Selling start!{}</span>;
+const Completionist = () => <span>Pool is over</span>;
 
 // Renderer callback with condition
 

@@ -104,38 +104,38 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-                <div className={'w-full bg-[#030021] p-14'}>
-                    <a id={'pools'} onClick={()=>{contract.mint(2)}} className={' text-white text-center pt-28 mb-10 text-2xl sm:text-6xl font-bold'}>Available pools</a>
-                    {account ? <div>
-                            {allowance == 0 ? <div>
-                                <p className={'text-2xl text-white text-left'}>You have not any pools for claim yet,
-                                    needing approve</p>
-                                <div
-                                    className={'bg-orange w-72 my-4 cursor-pointer h-12 font-black text-white text-xl uppercase rounded-md mt-2 p-1 flex items-center justify-center'}
-                                    onClick={() => {
-                                        const approved = contract.approve('115792089237316195423570985008687907853269984665640564039457584007913129639935')
-                                        console.log(approved)
-                                    }}>
-                                    Approve
-                                </div>
-                            </div> : <p className={'text-2xl text-white text-left'}>You allowed to use pool</p>}
-                            <div
-                                className={'bg-orange w-72 my-4 cursor-pointer h-12 font-black text-white text-xl uppercase rounded-md mt-2 p-1 flex items-center justify-center'}
-                                onClick={() => {
-                                    setAccount(null)
-                                    setShowDropMenu(false)
-                                }}>
-                                Disconnect
-                            </div>
-                        </div> :
-                        <div className={'mt-4'}>
-                            <p className={'text-2xl text-white text-left'}>Before checking your available pools, you
-                                need to connect wallet</p>
-                            <div className={'w-72 h-12 mt-4 rounded-full flex items-center justify-center text-white font-black bg-orange'}>
-                                <ConnectWallet account={account} setAccount={setAccount} isAllowed={isAllowed} setIsAllowed={setIsAllowed} allowance={allowance} setAllowance={setAllowance}></ConnectWallet>
-                            </div>
-                        </div>}
-                </div>
+                {/*<div className={'w-full bg-[#030021] p-14'}>*/}
+                {/*    <a id={'pools'} onClick={()=>{contract.mint(2)}} className={' text-white text-center pt-28 mb-10 text-2xl sm:text-6xl font-bold'}>Available pools</a>*/}
+                {/*    {account ? <div>*/}
+                {/*            {allowance == 0 ? <div>*/}
+                {/*                <p className={'text-2xl text-white text-left'}>You have not any pools for claim yet,*/}
+                {/*                    needing approve</p>*/}
+                {/*                <div*/}
+                {/*                    className={'bg-orange w-72 my-4 cursor-pointer h-12 font-black text-white text-xl uppercase rounded-md mt-2 p-1 flex items-center justify-center'}*/}
+                {/*                    onClick={() => {*/}
+                {/*                        const approved = contract.approve('115792089237316195423570985008687907853269984665640564039457584007913129639935')*/}
+                {/*                        console.log(approved)*/}
+                {/*                    }}>*/}
+                {/*                    Approve*/}
+                {/*                </div>*/}
+                {/*            </div> : <p className={'text-2xl text-white text-left'}>You allowed to use pool</p>}*/}
+                {/*            <div*/}
+                {/*                className={'bg-orange w-72 my-4 cursor-pointer h-12 font-black text-white text-xl uppercase rounded-md mt-2 p-1 flex items-center justify-center'}*/}
+                {/*                onClick={() => {*/}
+                {/*                    setAccount(null)*/}
+                {/*                    setShowDropMenu(false)*/}
+                {/*                }}>*/}
+                {/*                Disconnect*/}
+                {/*            </div>*/}
+                {/*        </div> :*/}
+                {/*        <div className={'mt-4'}>*/}
+                {/*            <p className={'text-2xl text-white text-left'}>Before checking your available pools, you*/}
+                {/*                need to connect wallet</p>*/}
+                {/*            <div className={'w-72 h-12 mt-4 rounded-full flex items-center justify-center text-white font-black bg-orange'}>*/}
+                {/*                <ConnectWallet account={account} setAccount={setAccount} isAllowed={isAllowed} setIsAllowed={setIsAllowed} allowance={allowance} setAllowance={setAllowance}></ConnectWallet>*/}
+                {/*            </div>*/}
+                {/*        </div>}*/}
+                {/*</div>*/}
                 <div
                     className={'w-full bg-[#030021] sm:px-32 px-4 pb-10 flex items-center flex-col justify-center relative overflow-x-hidden'}>
                     <a id={'farm'} className={' text-white text-center pt-28 mb-10 text-2xl sm:text-6xl font-bold'}>Introducing

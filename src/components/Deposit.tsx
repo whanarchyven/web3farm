@@ -190,6 +190,13 @@ const Deposit = ({
         fetchUserBalance()
     }, [account])
 
+    useEffect(()=>{
+        if(userData?.hasBooster){
+            const booster_temp=translateBoosterToText(Number(userData?.boosterId))
+            setBooster(booster_temp)
+        }
+    },[userData])
+
     return (
         <div className={'w-full rounded-xl border-[#A600E3] border-4 deposit-bg p-4'}>
 
@@ -286,7 +293,7 @@ const Deposit = ({
                     <div
                         className={classList('sm:flex justify-between items-start')}>
                         <p className={'text-white font-medium text-sm'}>Deposited:<br/><span
-                            className={'text-orange'}> {userData ? depositedValue + weiToDecimal(userData?.amount) : ''} {firstCoinName}</span>
+                            className={'text-orange'}> {userData ? weiToDecimal(userData?.amount) : ''} {firstCoinName}</span>
                         </p>
                         <p className={'text-white sm:text-right font-normal text-sm'}>Reward per block: <br/> <span
                             className={'text-sm text-orange font-medium'}>{rewardPerBlock ? weiToDecimal(rewardPerBlock) : 0}</span>
