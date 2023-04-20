@@ -239,7 +239,7 @@ const Deposit = ({
                         onClick={async () => {
                             if (web3 && approve) {
                                 const total_amount = web3.utils.toWei(enteredValue, 'ether')
-                                const test = await contract.stakeTokens(total_amount, chosenBooster.boost > 0 ? true : false, chosenBooster.id)
+                                const test = await contract.stakeTokens(total_amount, chosenBooster&&chosenBooster?.boost > 0 ? true : false, chosenBooster&&chosenBooster.id?chosenBooster.id:0)
                                 const updated = await fetchPoolData();
                                 await fetchUserData();
                             }
