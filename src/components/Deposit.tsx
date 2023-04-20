@@ -75,7 +75,7 @@ const Deposit = ({
         if(account){
             fetchUserData()
         }
-    })
+    },[account])
 
 
     const [web3, setWeb3] = useState<Web3>(null)
