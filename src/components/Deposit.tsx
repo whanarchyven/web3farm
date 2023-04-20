@@ -164,6 +164,7 @@ const Deposit = ({
     const fetchUserBalance=async ()=>{
         if(account){
             const balance=await contract.getUserBoosters()
+            console.log(balance)
             for(let i=0;i<4;i++){
                 if(balance[i]!='0'){
                     const temp=[...boosters];
