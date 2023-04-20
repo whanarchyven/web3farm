@@ -164,15 +164,15 @@ const Deposit = ({
     const fetchUserBalance=async ()=>{
         if(account){
             const balance=await contract.getUserBoosters()
+            const temp=[...boosters];
             console.log(balance)
             for(let i=0;i<4;i++){
                 if(balance[i]!='0'){
-                    const temp=[...boosters];
                     temp.push(translateBoosterToText(i))
-                    setBoosters(temp)
                     // setBooster([...booster,translateBoosterToText(i)])
                 }
             }
+            setBoosters(temp)
         }
     }
 
