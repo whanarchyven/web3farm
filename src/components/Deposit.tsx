@@ -138,13 +138,13 @@ const Deposit = ({
     const translateBooster = (booster: string) => {
         switch (booster) {
             case 'X2 FARM BOOSTER':
-                return {id:0,boost:10}
+                return {id:0,boost:50}
             case 'X3 FARM BOOSTER':
-                return {id:1,boost:30}
+                return {id:1,boost:100}
             case 'X4 FARM BOOSTER':
-                return {id:2,boost:40}
+                return {id:2,boost:200}
             case 'X5 FARM BOOSTER':
-                return {id:3,boost:50}
+                return {id:3,boost:500}
             default : return ''
 
         }

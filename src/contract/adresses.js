@@ -1,4 +1,4 @@
-export const bnbToBnbStacking='0xFcE749DFF5d755Fb547ACB779b281491973011Af';
+export const bnbToBnbStacking='0xb712EE9Fb6c49224CC37eFAe05f15c3C9B5C6a88';
 export const busdToBnbStacking='0x21D9C1A4082911EBD54416E5729Ffd01E12e8b72';
 export const bnbToUsdtStacking='0xcBAd30fa7e0E70F9471A5b9F4a3538767d627d2E';
 export const busdToken='0xA153fFCa1408af03538d640dFa0E360E488Cfb26';
