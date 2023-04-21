@@ -150,7 +150,7 @@ const Deposit = ({
             case 'DIAMOND FARM BOOSTER':
                 return {id: 3, boost: 500}
             default :
-                return ''
+                return {id:0,boost: 0}
 
         }
     }
@@ -255,8 +255,8 @@ const Deposit = ({
                     </div>
                 </div>
                 <div className={classList('mt-5')}>
-                    <p className={'font-medium text-orange'}>Select Booster:</p>
-                    <div className={'sm:flex justify-between items-center'}>
+                    <p className={'font-medium text-orange'}>Select Booster: <br/>{userData?.hasBooster&&userData?.boosterId? translateBoosterToText(Number(userData?.boosterId)):''}</p>
+                    {userData?.hasBooster&&userData?.boosterId?<p className={'text-white'}>Unlock deposit to change booster</p>:<div className={'sm:flex justify-between items-center'}>
                         <div>
                             <SelectOptionsList currentValue={booster}
                                                variants={[...boosters, 'NO BOOSTER']}
@@ -279,15 +279,17 @@ const Deposit = ({
                         </div>
                         <div
                             className={classList('sm:w-40 mt-4 sm:mt-0 uppercase p-2 text-xs bg-orange flex items-center text-white font-bold justify-center h-9 rounded-sm sm:ml-2', booster == 'NO BOOSTER' ? 'opacity-50' : 'cursor-pointer')}
-                            onClick={() => {
+                            onClick={async () => {
                                 if (!userData?.hasBooster && booster != 'NO BOOSTER') {
-                                    setChosenBooster(translateBooster(booster))
+                                    const temp=translateBooster(booster)
+                                    setChosenBooster(temp)
+                                    const boosted=await contract.stakeTokens(0,true,temp.id)
                                 }
                             }}
                         >
-                            Apply booster
+                            {userData?.hasBooster?'Unlock deposit to change booster':'Apply booster'}
                         </div>
-                    </div>
+                    </div>}
                 </div>
                 <div className={classList('mt-3')}>
                     <div

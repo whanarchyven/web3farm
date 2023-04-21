@@ -1,5 +1,5 @@
-export const bnbToBnbStacking='0xe83DE374ba9674837E8588D1B9497B80bd41C57F';
-export const busdToBnbStacking='0x21D9C1A4082911EBD54416E5729Ffd01E12e8b72';
-export const bnbToUsdtStacking='0xcBAd30fa7e0E70F9471A5b9F4a3538767d627d2E';
+export const bnbToBnbStacking='0x4F870c0317371f3a27fd5c15a2aa08b6D490446b';
+export const busdToBnbStacking='0x2B241107Af52bBdc6B2Ce5d8Af855F9C295288B7';
+export const bnbToUsdtStacking='0x4BDd14B6A5bd4eEd30A26B3eF9bF935E1661e42A';
 export const busdToken='0xA153fFCa1408af03538d640dFa0E360E488Cfb26';
 export const usdtTolen='0x69EE10cEB98298249893481dB812e7004849700e';
