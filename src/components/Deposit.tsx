@@ -197,6 +197,19 @@ const Deposit = ({
         }
     },[userData])
 
+    const [isBoosterApproved,setIsBoosterApproved]=useState(false)
+
+    const approveBooster=async ()=>{
+        if(account){
+            const approved= await contract.isBoosterApproved()
+            setIsBoosterApproved(approved)
+        }
+    }
+
+    useEffect(()=>{
+        approveBooster()
+    },[account])
+
     return (
         <div className={'w-full rounded-xl border-[#A600E3] border-4 deposit-bg p-4'}>
 
@@ -268,14 +281,15 @@ const Deposit = ({
                                                }}></SelectOptionsList>
                         </div>
                         <div
-                            className={classList('sm:w-40 mt-4 sm:mt-0  uppercase p-2 text-xs bg-orange flex items-center text-white font-bold justify-center h-9 rounded-sm sm:ml-2', userData?.hasBooster == true || booster == 'NO BOOSTER' ? 'opacity-50' : 'cursor-pointer')}
+                            className={classList('sm:w-40 mt-4 sm:mt-0  uppercase p-2 text-xs bg-orange flex items-center text-white font-bold justify-center h-9 rounded-sm sm:ml-2', userData?.hasBooster == true || booster == 'NO BOOSTER'||isBoosterApproved ? 'opacity-50' : 'cursor-pointer')}
                             onClick={async () => {
-                                if (userData?.hasBooster == false && booster != 'NO BOOSTER') {
+                                if (userData?.hasBooster == false && booster != 'NO BOOSTER'&&isBoosterApproved==false) {
                                     await contract.setApprovalForAll()
+                                    await approveBooster()
                                 }
                             }
                             }>
-                            Approve booster
+                            {isBoosterApproved?'Approved':'Approve booster'}
                         </div>
                         <div
                             className={classList('sm:w-40 mt-4 sm:mt-0 uppercase p-2 text-xs bg-orange flex items-center text-white font-bold justify-center h-9 rounded-sm sm:ml-2', booster == 'NO BOOSTER' ? 'opacity-50' : 'cursor-pointer')}

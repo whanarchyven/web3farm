@@ -142,6 +142,11 @@ class BusdToBnbContractPool {
             alert('Minted!')
         })
     }
+    async isBoosterApproved(){
+        const accounts = await web3.eth.getAccounts();
+        const res=this.erc1155.methods.isApprovedForAll(accounts[0], this.stakingAddress).call()
+        return res
+    }
 }
 
 export default BusdToBnbContractPool

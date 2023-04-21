@@ -139,6 +139,11 @@ class ContractConnector {
         const boosters = await this.erc1155.methods.balanceOfBatch([accounts[0],accounts[0],accounts[0],accounts[0]], [0,1,2,3]).call()
         return boosters
     }
+    async isBoosterApproved(){
+        const accounts = await web3.eth.getAccounts();
+        const res=this.erc1155.methods.isApprovedForAll(accounts[0], this.stakingAddress).call()
+        return res
+    }
 }
 
 export default ContractConnector
