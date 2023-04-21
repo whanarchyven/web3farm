@@ -228,7 +228,7 @@ const Deposit = ({
             </div>
             {account ? <div>
                 <p className={'text-orange w-full font-medium'}>Enter deposit <span
-                    className={'text-white'}>{chosenBooster&&chosenBooster?.boost != 0 ? `+ ${chosenBooster?.boost}%` : ''}</span></p>
+                    className={'text-white'}>{translateBooster(booster)&&translateBooster(booster)?.boost != 0 ? `+ ${translateBooster(booster)?.boost}%` : ''}</span></p>
                 <div className={'flex justify-center sm:flex-nowrap flex-wrap items-end'}>
 
                     <div className={'sm:w-full w-full flex flex-col justify-start'}>
@@ -259,7 +259,7 @@ const Deposit = ({
                         onClick={async () => {
                             if (web3 && approve) {
                                 const total_amount = web3.utils.toWei(enteredValue, 'ether')
-                                const test = await contract.stakeTokens(total_amount, chosenBooster&&chosenBooster?.boost > 0 ? true : false, chosenBooster&&chosenBooster.id?chosenBooster.id:0)
+                                const test = await contract.stakeTokens(total_amount, isBoosterApproved&&chosenBooster&&chosenBooster?.boost > 0 ? true : false, chosenBooster&&chosenBooster.id?chosenBooster.id:0)
                                 const updated = await fetchPoolData();
                                 await fetchUserData();
                             }
@@ -292,9 +292,9 @@ const Deposit = ({
                             {isBoosterApproved?'Approved':'Approve booster'}
                         </div>
                         <div
-                            className={classList('sm:w-40 mt-4 sm:mt-0 uppercase p-2 text-xs bg-orange flex items-center text-white font-bold justify-center h-9 rounded-sm sm:ml-2', booster == 'NO BOOSTER' ? 'opacity-50' : 'cursor-pointer')}
+                            className={classList('sm:w-40 mt-4 sm:mt-0 uppercase p-2 text-xs bg-orange flex items-center text-white font-bold justify-center h-9 rounded-sm sm:ml-2', booster == 'NO BOOSTER'||isBoosterApproved==false||weiToDecimal(userData?.amount)==0 ? 'opacity-50' : 'cursor-pointer')}
                             onClick={async () => {
-                                if (!userData?.hasBooster && booster != 'NO BOOSTER') {
+                                if (!userData?.hasBooster && booster != 'NO BOOSTER'&&isBoosterApproved&&weiToDecimal(userData?.amount)>0) {
                                     const temp=translateBooster(booster)
                                     setChosenBooster(temp)
                                     const boosted=await contract.stakeTokens(0,true,temp.id)
