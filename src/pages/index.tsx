@@ -144,7 +144,7 @@ export default function Home() {
                     <div className={'grid gap-12 w-full grid-cols-1 sm:grid-cols-3'}>
                         <Deposit needApprove={false} type={'bnbToBnb'}  account={account} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
                                  secondCoinName={'BNB'} secondCoinIcon={'/images/coins/bnb.svg'}></Deposit>
-                        <Deposit needApprove={false} type={'busdToBnb'}  account={account} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
+                        <Deposit needApprove={false} type={'bnbToBusd'}  account={account} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
                                  secondCoinName={'BUSD'} secondCoinIcon={'/images/coins/busd.svg'}></Deposit>
                         <Deposit needApprove={true} type={'busdToBnb'}  account={account} firstCoinName={'BUSD'} firstCoinIcon={'/images/coins/busd.svg'}
                                  secondCoinName={'BNB'} secondCoinIcon={'/images/coins/bnb.svg'}></Deposit>
