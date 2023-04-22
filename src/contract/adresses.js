@@ -1,6 +1,6 @@
-export const bnbToBnbStacking='0x83de90aC88BCf4B0383bd78Ba9825530c36132D3';
+export const bnbToBnbStacking='0x22F030B016e90F31Ae437392ba9CEc36707d095c';
 export const bnbToBusdStacking='0xD20bf786017de83D4271e0B775631801231ecAe6';
-export const busdToBnbStacking='0x38A3840976AE84227b88895610ea7A8b10e052b7';
+export const busdToBnbStacking='0x51E7FbA9DBE0C1d2C3B5091Bf72E9237D932AebB';
 export const web3fToBnbStacking='0xF697bEf172d7446f96e7764f6e50778642A61f17';
 export const web3fToBusdStacking='0x8D633D2a66D1f1a15dAd5daE9058C79497Ae4eca';
 export const web3fToPinksale='0x53bA07d535e0cfa3E6835cbF755976Bd353981A3';
