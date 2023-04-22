@@ -98,7 +98,6 @@ class ContractConnector {
     //ERC Methods
 
     async mintPrice(id) {
-        const accounts = await web3.eth.getAccounts();
         const price = await this.erc1155.methods.mintPrice(id).call((err, res) => {
             console.log(err);
             console.log(res)

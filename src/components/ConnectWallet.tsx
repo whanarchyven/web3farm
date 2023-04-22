@@ -23,12 +23,8 @@ const ConnectWallet = ({account,setAccount, isAllowed, setIsAllowed, setAllowanc
 
     const connectToMetaMask = async () => {
         try {
-
-            if(window.ethereum.networkVersion!=97){
-                alert('Change network on testnet!')
-            }
             // Проверяем, установлен ли MetaMask в браузере
-            else if (typeof window.ethereum !== 'undefined' && window.ethereum.request) {
+            if (typeof window.ethereum !== 'undefined' && window.ethereum.request) {
                 // Подключаемся к MetaMask
                 const ethereum = window.ethereum
                 await ethereum.request({method: 'eth_requestAccounts'}).then((res)=>{console.log(res)},(err)=>{console.log(err)})
@@ -38,29 +34,6 @@ const ConnectWallet = ({account,setAccount, isAllowed, setIsAllowed, setAllowanc
                 setWeb3(web3)
                 if (accounts) {
                     setAccount(accounts[0])
-                }
-                if (web3) {
-
-                    const accounts = await web3.eth.getAccounts();
-
-                    const userData = contract.userData();
-
-                    for (let i = 0; i < 5; i++) {
-                        if (userData[i] != '0' || userData[i] != false) {
-                            setIsAllowed(true)
-                        }
-                    }
-
-                    if (!isAllowed) {
-                        const allowanceTemp = await contract.allowance()
-                        setAllowance(allowanceTemp)
-                        console.log('AAAAAAA')
-                        console.log(allowance)
-                    }
-
-                    // console.log(isAllowed)
-                } else {
-                    console.log('web3 undefined')
                 }
             } else {
                 // MetaMask не установлен, выводим сообщение

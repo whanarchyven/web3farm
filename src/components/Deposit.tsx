@@ -5,8 +5,13 @@ import SelectOptionsList from "@/components/SelectOption";
 import {classList} from "@/helpers/classList";
 import ContractConnector from "@/contract/contract";
 import BnbToBnbContractPool from "@/contract/BnbToBnbContractPool"
+import BnbToBusdContractPoll from '@/contract/BnbToBusdContractPool'
 import BnbToUsdtContractPool from "@/contract/BnbToUsdtContractPool"
 import BusdToBnbContractPool from '@/contract/BusdToBnbContractPool'
+import Web3fToBnbContractPool from '@/contract/Web3fToBnbContractPool'
+import Web3fToBusdContractPool from '@/contract/Web3fToBusdContractPool'
+import Web3fToPinksaleContractPool from '@/contract/Web3fToPinksaleContractPool'
+
 import Web3 from "web3";
 import weiToDecimal from "@/helpers/weiToDecimal";
 
@@ -15,11 +20,9 @@ interface Interface {
     firstCoinIcon: string,
     secondCoinName: string,
     secondCoinIcon: string,
-    rewardPerBlock: number,
-    timeTillEnd: number,
     account: string,
     needApprove: boolean
-    type: 'test' | 'bnbToBnb' | 'bnbToUsdt' | 'busdToBnb'
+    type: 'test' | 'bnbToBnb' |'bnbToBusd'|'web3fToBnb'|'web3fToBusd'|'web3fToPinksale'| 'bnbToUsdt' | 'busdToBnb'
 }
 
 const Deposit = ({
@@ -59,6 +62,14 @@ const Deposit = ({
                 return new BnbToUsdtContractPool()
             case 'busdToBnb':
                 return new BusdToBnbContractPool()
+            case 'bnbToBusd':
+                return new BnbToBusdContractPoll()
+            case 'web3fToBnb':
+                return new Web3fToBnbContractPool()
+            case 'web3fToBusd':
+                return new Web3fToBusdContractPool()
+            case 'web3fToPinksale':
+                return new Web3fToPinksaleContractPool()
             default:
                 return new ContractConnector()
         }
@@ -98,20 +109,25 @@ const Deposit = ({
         try {
             console.log('FETCHING POOL DATA...')
             const endTime = await contract.endTime()
+            console.log(endTime)
             if (timeTillEnd == null) {
                 setTimeTillEnd(Number(endTime))
             }
-            const maxAllow = await contract.allowance()
-            setMaxAllowToken(maxAllow)
+            if(needApprove){
+                const maxAllow = await contract.allowance()
+                setMaxAllowToken(maxAllow)
+            }
             const minStacking = await contract.minStakingAmount()
             setMinAllowToken(minStacking)
             const reward = await contract.rewardPerSecond()
             setRewardPerBlock(reward)
             const prof = await contract.viewUnpaid()
             setProfit(prof)
-            const allowance = await contract.allowance()
-            if (allowance > 0) {
-                setApprove(true)
+            if(needApprove){
+                const allowance = await contract.allowance()
+                if (allowance > 0) {
+                    setApprove(true)
+                }
             }
         } catch (e) {
             console.log(e)
@@ -215,14 +231,14 @@ const Deposit = ({
 
             <div className={'w-full flex sm:flex-nowrap flex-wrap items-center justify-between'}>
                 <div className={'flex items-center'}>
-                    <p className={'font-bold text-2xl text-orange uppercase'}>{firstCoinName}</p>
+                    <p className={'font-bold text-xl text-orange uppercase'}>{firstCoinName}</p>
                     <img className={'w-6 ml-2 aspect-square'} src={firstCoinIcon}/>
                 </div>
-                <div className={'w-24 h-12 relative'}>
+                <div className={'w-24 flex h-12 relative'}>
                     <Image src={'/images/arrow.svg'} alt={'air'} layout={'fill'}></Image>
                 </div>
                 <div className={'flex items-center'}>
-                    <p className={'font-bold text-2xl text-orange uppercase'}>{secondCoinName}</p>
+                    <p className={'font-bold text-xl text-orange uppercase'}>{secondCoinName}</p>
                     <img className={'w-6 ml-2 aspect-square'} src={secondCoinIcon}/>
                 </div>
             </div>
@@ -232,7 +248,7 @@ const Deposit = ({
                 <div className={'flex justify-center sm:flex-nowrap flex-wrap items-end'}>
 
                     <div className={'sm:w-full w-full flex flex-col justify-start'}>
-                        <input min={minAllowToken ? minAllowToken : 0}
+                        <input onBlur={()=>{if(Number(enteredValue)<weiToDecimal(minAllowToken)){setEnteredValue(String(weiToDecimal(minAllowToken)))}}} min={minAllowToken ? weiToDecimal(minAllowToken) : 0}
                                max={maxAllowToken ? maxAllowToken : 100000000000000000}
                                value={enteredValue} type={'number'} disabled={approve ? false : true}
                                onChange={(event) => {

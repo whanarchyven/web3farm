@@ -143,14 +143,21 @@ export default function Home() {
                         platform</a>
                     <div className={'grid gap-12 w-full grid-cols-1 sm:grid-cols-3'}>
                         <Deposit needApprove={false} type={'bnbToBnb'}  account={account} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
-                                 secondCoinName={'BNB'} secondCoinIcon={'/images/coins/bnb.svg'}
-                                 rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
-                        <Deposit needApprove={false} type={'bnbToUsdt'}  account={account} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
-                                 secondCoinName={'USDT'} secondCoinIcon={'/images/coins/usdt.svg'}
-                                 rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
+                                 secondCoinName={'BNB'} secondCoinIcon={'/images/coins/bnb.svg'}></Deposit>
+                        <Deposit needApprove={false} type={'busdToBnb'}  account={account} firstCoinName={'BNB'} firstCoinIcon={'/images/coins/bnb.svg'}
+                                 secondCoinName={'BUSD'} secondCoinIcon={'/images/coins/busd.svg'}></Deposit>
                         <Deposit needApprove={true} type={'busdToBnb'}  account={account} firstCoinName={'BUSD'} firstCoinIcon={'/images/coins/busd.svg'}
-                                 secondCoinName={'BNB'} secondCoinIcon={'/images/coins/bnb.svg'}
-                                 rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>
+                                 secondCoinName={'BNB'} secondCoinIcon={'/images/coins/bnb.svg'}></Deposit>
+                        <Deposit needApprove={true} type={'web3fToBnb'}  account={account} firstCoinName={'WEB3F'} firstCoinIcon={'/images/coins/web3f.svg'}
+                                 secondCoinName={'BNB'} secondCoinIcon={'/images/coins/bnb.svg'}></Deposit>
+                        <Deposit needApprove={true} type={'web3fToBusd'}  account={account} firstCoinName={'WEB3F'} firstCoinIcon={'/images/coins/web3f.svg'}
+                                 secondCoinName={'BUSD'} secondCoinIcon={'/images/coins/busd.svg'}></Deposit>
+                        <Deposit needApprove={true} type={'web3fToPinksale'}  account={account} firstCoinName={'WEB3F'} firstCoinIcon={'/images/coins/web3f.svg'}
+                                 secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}></Deposit>
+
+                        {/*<Deposit needApprove={true} type={'busdToBnb'}  account={account} firstCoinName={'BUSD'} firstCoinIcon={'/images/coins/busd.svg'}*/}
+                        {/*         secondCoinName={'BNB'} secondCoinIcon={'/images/coins/bnb.svg'}*/}
+                        {/*         rewardPerBlock={12.4345} timeTillEnd={555555}></Deposit>*/}
 
                     </div>
 

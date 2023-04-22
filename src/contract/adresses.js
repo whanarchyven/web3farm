@@ -1,6 +1,14 @@
-export const bnbToBnbStacking='0x4F870c0317371f3a27fd5c15a2aa08b6D490446b';
-export const busdToBnbStacking='0x2B241107Af52bBdc6B2Ce5d8Af855F9C295288B7';
+export const bnbToBnbStacking='0x83de90aC88BCf4B0383bd78Ba9825530c36132D3';
+export const bnbToBusdStacking='0xD20bf786017de83D4271e0B775631801231ecAe6';
+export const busdToBnbStacking='0x38A3840976AE84227b88895610ea7A8b10e052b7';
+export const web3fToBnbStacking='0xF697bEf172d7446f96e7764f6e50778642A61f17';
+export const web3fToBusdStacking='0x8D633D2a66D1f1a15dAd5daE9058C79497Ae4eca';
+export const web3fToPinksale='0x53bA07d535e0cfa3E6835cbF755976Bd353981A3';
 export const bnbToUsdtStacking='0x4BDd14B6A5bd4eEd30A26B3eF9bF935E1661e42A';
-export const busdToken='0x69EE10cEB98298249893481dB812e7004849700e';//'0xA153fFCa1408af03538d640dFa0E360E488Cfb26';
+
+//Tokens
+
+export const busdToken='0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56';
 export const usdtTolen='0x69EE10cEB98298249893481dB812e7004849700e';
-export const booster='0xBE5F6217686aC5dA5dE7F1234E780E782b52877A';
+export const booster='0x4955f0D28dEDe322456a67114614757B96E13021';
+export const web3fToken='0x62496AA0b15C251cF455DA55F62F08D70C3F8818';
