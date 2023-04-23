@@ -11,6 +11,7 @@ import FarmBooster from "@/components/FarmBooster";
 import Web3 from 'web3';
 import ContractConnector from "@/contract/contract";
 import ConnectWallet from "@/components/ConnectWallet";
+import CountdownDateTimer from "@/components/CountdownDateTimer";
 
 
 const inter = Inter({subsets: ['latin']})
@@ -64,21 +65,21 @@ export default function Home() {
                             </div>
                             <div className={'w-full mt-8 flex items-center'}>
                                 <img className={'w-9 aspect-square'} src={'/images/done.svg'}/>
-                                <p className={'text-white ml-2 text-2xl font-[900]'}>PRESALE: <span
-                                    className={'font-normal text-orange font-museo'}>to be announced</span></p>
+                                <p className={'text-white ml-2 text-2xl font-[900]'}>PRESALE on Pinksale:</p>
+                                <a target={'_blank'} href={'https://www.pinksale.finance/launchpad/0x0a0b880A42d419c69B61Ab39e9eE945df0F39BAC?chain=BSC'} className={'w-32 ml-3 text-white font-bold h-8 bg-[#f95192] rounded-xl flex items-center justify-center'}>
+                                    Participate
+                                </a>
                             </div>
                             <div className={'w-full mt-3 flex items-center'}>
                                 <img className={'w-9 aspect-square'} src={'/images/done.svg'}/>
-                                <p className={'text-white ml-2 text-2xl font-[900]'}>SMART CONTRACT: <span
-                                    className={'font-normal text-orange font-museo'}>to be announced</span></p>
+                                <p className={'text-white ml-2 text-2xl font-[900]'}>SMART CONTRACT: <a target={'_blank'} href={'https://bscscan.com/address/0x62496AA0b15C251cF455DA55F62F08D70C3F8818'}
+                                    className={'font-normal text-orange font-museo'}>0x62496AA0b15C251cF455DA55F62F08D70C3F8818</a></p>
                             </div>
                             <div className={'w-full mt-3 flex items-center'}>
                                 <img className={'w-9 aspect-square'} src={'/images/done.svg'}/>
                                 <p className={'text-white ml-2 text-2xl font-[900]'}>TIME TO START: <span
                                     className={'font-normal text-orange font-museo'}>
-                                    {/*<CountdownTimer*/}
-                                    {/*time={50056050} timeLimits={'minutes'} prefix={'MINUTES'}/>*/}
-                                    to be announced
+                                    <CountdownDateTimer time={new Date(2023, 3, 26, 16, 0, 0, 0)} timeLimits={'days'}/>
                                 </span></p>
                             </div>
                             <div className={'w-3/4 mt-4 flex items-center justify-between'}>
@@ -90,7 +91,7 @@ export default function Home() {
                                     className={'cursor-pointer px-4 w-full mx-2 py-2 bg-orange rounded-sm flex items-center text-white text-2xl justify-center font-bold'}>
                                     AUDIT
                                 </a>
-                                <a
+                                <a href={'https://blocksafu.com/project-detail/0x62496AA0b15C251cF455DA55F62F08D70C3F8818'}
                                     className={'cursor-pointer px-4 w-full mx-2 py-2 bg-orange rounded-sm flex items-center text-white text-2xl justify-center font-bold'}>
                                     SAFU
                                 </a>
@@ -148,11 +149,11 @@ export default function Home() {
                                  secondCoinName={'BUSD'} secondCoinIcon={'/images/coins/busd.svg'}></Deposit>
                         <Deposit needApprove={true} type={'busdToBnb'}  account={account} firstCoinName={'BUSD'} firstCoinIcon={'/images/coins/busd.svg'}
                                  secondCoinName={'BNB'} secondCoinIcon={'/images/coins/bnb.svg'}></Deposit>
-                        <Deposit needApprove={true} type={'web3fToBnb'}  account={account} firstCoinName={'WEB3F'} firstCoinIcon={'/images/coins/web3f.svg'}
+                        <Deposit isDisabled={true} needApprove={true} type={'web3fToBnb'}  account={account} firstCoinName={'WEB3F'} firstCoinIcon={'/images/coins/web3f.svg'}
                                  secondCoinName={'BNB'} secondCoinIcon={'/images/coins/bnb.svg'}></Deposit>
-                        <Deposit needApprove={true} type={'web3fToBusd'}  account={account} firstCoinName={'WEB3F'} firstCoinIcon={'/images/coins/web3f.svg'}
+                        <Deposit isDisabled={true} needApprove={true} type={'web3fToBusd'}  account={account} firstCoinName={'WEB3F'} firstCoinIcon={'/images/coins/web3f.svg'}
                                  secondCoinName={'BUSD'} secondCoinIcon={'/images/coins/busd.svg'}></Deposit>
-                        <Deposit needApprove={true} type={'web3fToPinksale'}  account={account} firstCoinName={'WEB3F'} firstCoinIcon={'/images/coins/web3f.svg'}
+                        <Deposit isDisabled={true} needApprove={true} type={'web3fToPinksale'}  account={account} firstCoinName={'WEB3F'} firstCoinIcon={'/images/coins/web3f.svg'}
                                  secondCoinName={'PINKSALE'} secondCoinIcon={'/images/coins/pinksale.svg'}></Deposit>
 
                         {/*<Deposit needApprove={true} type={'busdToBnb'}  account={account} firstCoinName={'BUSD'} firstCoinIcon={'/images/coins/busd.svg'}*/}
@@ -345,10 +346,10 @@ export default function Home() {
                     </div>
                     <div
                         className={'w-full mt-24 animate-navbarOpen transition-all duration-300 mt-3 grid sm:grid-cols-7 items-center'}>
-                        <p className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Presale</p>
-                        <p className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>KYC</p>
-                        <p className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>AUDIT</p>
-                        <p className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>SAFU</p>
+                        <a href={'https://www.pinksale.finance/launchpad/0x0a0b880A42d419c69B61Ab39e9eE945df0F39BAC?chain=BSC'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Presale</a>
+                        <a href={'https://pinksale.notion.site/WEB3-FARM-KYC-Verification-8b57ce0f2b794066b9dabce9047c31de'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>KYC</a>
+                        <a href={'https://blocksafu.com/project-detail/0xC2dEB6E28a09bBA1A5D1d462a303C26fB8b51B8a'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>AUDIT</a>
+                        <a href={'https://blocksafu.com/project-detail/0x62496AA0b15C251cF455DA55F62F08D70C3F8818'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>SAFU</a>
                         <a href={'https://web3farming.gitbook.io/web-3-farm.-1/'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Docs</a>
                         <a href={'https://t.me/web3farming_portal'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Telegram</a>
                         <a href={'https://twitter.com/web3_Farm'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Twitter</a>
