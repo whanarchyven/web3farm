@@ -35,6 +35,10 @@ const ConnectWallet = ({account,setAccount, isAllowed, setIsAllowed, setAllowanc
                 if (accounts) {
                     setAccount(accounts[0])
                 }
+                await window.ethereum.request({
+                    method: 'wallet_switchEthereumChain',
+                    params: [{ chainId: '0x38' }], // chainId must be in hexadecimal numbers
+                });
             } else {
                 // MetaMask не установлен, выводим сообщение
                 alert('Please install MetaMask to connect to the blockchain.')
