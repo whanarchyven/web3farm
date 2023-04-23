@@ -226,24 +226,23 @@ const Deposit = ({
     useEffect(() => {
         approveBooster()
     }, [account])
-
     return (
         <div className={'w-full rounded-xl border-[#A600E3] relative border-4 deposit-bg p-4'}>
             <div className={'w-full flex sm:flex-nowrap flex-wrap items-center justify-between'}>
                 <div className={'flex items-center'}>
-                    <p className={'font-bold text-xl text-orange uppercase'}>{firstCoinName}</p>
+                    <p className={classList('font-bold text-xl uppercase',type=='web3fToPinksale'?'text-pink':'text-orange')}>{firstCoinName}</p>
                     <img className={'w-6 ml-2 aspect-square'} src={firstCoinIcon}/>
                 </div>
                 <div className={'w-24 flex h-12 relative'}>
                     <Image src={'/images/arrow.svg'} alt={'air'} layout={'fill'}></Image>
                 </div>
                 <div className={'flex items-center'}>
-                    <p className={'font-bold text-xl text-orange uppercase'}>{secondCoinName}</p>
+                    <p className={classList('font-bold text-xl uppercase',type=='web3fToPinksale'?'text-pink':'text-orange')}>{secondCoinName}</p>
                     <img className={'w-6 ml-2 aspect-square'} src={secondCoinIcon}/>
                 </div>
             </div>
             {account ? <div>
-                <p className={'text-orange w-full font-medium'}>Enter deposit <span
+                <p className={classList('w-full font-medium',type=='web3fToPinksale'?'text-pink':'text-orange')}>Enter deposit <span
                     className={'text-white'}>{translateBooster(booster) && translateBooster(booster)?.boost != 0 ? `+ ${translateBooster(booster)?.boost}%` : ''}</span>
                 </p>
                 <div className={'flex justify-center sm:flex-nowrap flex-wrap items-end'}>
@@ -265,7 +264,7 @@ const Deposit = ({
                 </div>
                 <div className={'flex mt-2 justify-between items-center'}>
                     {needApprove ? <div
-                        className={classList('w-full sm:w-full uppercase p-1 text-xs bg-orange flex items-center text-white font-bold justify-center h-9 rounded-sm my-3 sm:my-0 sm:mr-2', approve ? 'opacity-50' : 'cursor-pointer')}
+                        className={classList('w-full sm:w-full uppercase p-1 text-xs flex items-center text-white font-bold justify-center h-9 rounded-sm my-3 sm:my-0 sm:mr-2', approve ? 'opacity-50' : 'cursor-pointer',type=='web3fToPinksale'?'bg-pink':' bg-orange')}
                         onClick={async () => {
                             if (web3) {
                                 const approved = await contract.approve('115792089237316195423570985008687907853269984665640564039457584007913129639935')
@@ -276,7 +275,7 @@ const Deposit = ({
                         {approve ? 'Approved' : 'Approve'}
                     </div> : null}
                     <div
-                        className={classList('w-full sm:w-full uppercase p-1 text-xs bg-orange flex items-center text-white font-bold justify-center h-9 rounded-sm my-3 sm:my-0 sm:ml-0', approve ? 'cursor-pointer' : 'opacity-50')}
+                        className={classList('w-full sm:w-full uppercase p-1 text-xs flex items-center text-white font-bold justify-center h-9 rounded-sm my-3 sm:my-0 sm:ml-0', approve ? 'cursor-pointer' : 'opacity-50',type=='web3fToPinksale'?'bg-pink':'bg-orange')}
                         onClick={async () => {
                             if (web3 && approve) {
                                 const total_amount = web3.utils.toWei(enteredValue, 'ether')
@@ -289,7 +288,7 @@ const Deposit = ({
                     </div>
                 </div>
                 <div className={classList('mt-5')}>
-                    <p className={'font-medium text-orange'}>Select
+                    <p className={classList('font-medium',type=='web3fToPinksale'?'text-pink':'text-orange')}>Select
                         Booster: <br/>{userData?.hasBooster && userData?.boosterId ? translateBoosterToText(Number(userData?.boosterId)) : ''}
                     </p>
                     {userData?.hasBooster && userData?.boosterId ?
@@ -306,7 +305,7 @@ const Deposit = ({
                                                    }}></SelectOptionsList>
                             </div>
                             <div
-                                className={classList('sm:w-40 mt-4 sm:mt-0  uppercase p-2 text-xs bg-orange flex items-center text-white font-bold justify-center h-9 rounded-sm sm:ml-2', userData?.hasBooster == true || booster == 'NO BOOSTER' || isBoosterApproved ? 'opacity-50' : 'cursor-pointer')}
+                                className={classList('sm:w-40 mt-4 sm:mt-0  uppercase p-2 text-xs flex items-center text-white font-bold justify-center h-9 rounded-sm sm:ml-2', userData?.hasBooster == true || booster == 'NO BOOSTER' || isBoosterApproved ? 'opacity-50' : 'cursor-pointer',type=='web3fToPinksale'?'bg-pink':'bg-orange')}
                                 onClick={async () => {
                                     if (userData?.hasBooster == false && booster != 'NO BOOSTER' && isBoosterApproved == false) {
                                         await contract.setApprovalForAll()
@@ -317,7 +316,7 @@ const Deposit = ({
                                 {isBoosterApproved ? 'Approved' : 'Approve booster'}
                             </div>
                             <div
-                                className={classList('sm:w-40 mt-4 sm:mt-0 uppercase p-2 text-xs bg-orange flex items-center text-white font-bold justify-center h-9 rounded-sm sm:ml-2', booster == 'NO BOOSTER' || isBoosterApproved == false || weiToDecimal(userData?.amount) == 0 ? 'opacity-50' : 'cursor-pointer')}
+                                className={classList('sm:w-40 mt-4 sm:mt-0 uppercase p-2 text-xs flex items-center text-white font-bold justify-center h-9 rounded-sm sm:ml-2', booster == 'NO BOOSTER' || isBoosterApproved == false || weiToDecimal(userData?.amount) == 0 ? 'opacity-50' : 'cursor-pointer',type=='web3fToPinksale'?'bg-pink':'bg-orange')}
                                 onClick={async () => {
                                     if (!userData?.hasBooster && booster != 'NO BOOSTER' && isBoosterApproved && weiToDecimal(userData?.amount) > 0) {
                                         const temp = translateBooster(booster)
@@ -334,18 +333,18 @@ const Deposit = ({
                     <div
                         className={classList('sm:flex justify-between items-start')}>
                         <p className={'text-white font-medium text-sm'}>Deposited:<br/><span
-                            className={'text-orange'}> {userData ? weiToDecimal(userData?.amount) : ''} {firstCoinName}</span>
+                            className={classList('',type=='web3fToPinksale'?'text-pink':'text-orange')}> {userData ? weiToDecimal(userData?.amount) : ''} {firstCoinName}</span>
                         </p>
                         <p className={'text-white sm:text-right font-normal text-sm'}>Reward per second: <br/> <span
-                            className={'text-sm text-orange font-medium'}>{rewardPerBlock ? weiToDecimal(rewardPerBlock) : 0}</span>
+                            className={classList('text-sm  font-medium',type=='web3fToPinksale'?'text-pink':'text-orange')}>{rewardPerBlock ? weiToDecimal(rewardPerBlock) : 0}</span>
                         </p>
                     </div>
                     <div className={'sm:flex justify-between items-center mt-4'}>
                         <p className={classList('text-white font-medium text-sm')}>EARNED:<br/><span
-                            className={'text-orange'}>{weiToDecimal(profit)} {secondCoinName}</span></p>
+                            className={classList('',type=='web3fToPinksale'?'text-pink':'text-orange')}>{weiToDecimal(profit)} {secondCoinName}</span></p>
 
                         <p className={'text-white text-right font-normal text-sm'}>Time till block end: <br/> <span
-                            className={'text-2xl text-orange font-medium'}>{timeTillEnd ?
+                            className={classList('text-2xl  font-medium',type=='web3fToPinksale'?'text-pink':'text-orange')}>{timeTillEnd ?
                             <CountdownTimer timeLimits={"seconds"}
                                             time={timeTillEnd}/> : '0'}</span>
                         </p>
@@ -355,7 +354,7 @@ const Deposit = ({
                     <div
                         className={classList('my-5 flex w-full justify-center')}>
                         <div
-                            className={classList('w-full sm:w-60 mb-2 uppercase p-2 text-2xl bg-orange flex items-center text-white font-bold justify-center h-12 rounded-sm sm:mx-2 mx-0', profit > 0 ? 'cursor-pointer' : 'opacity-50')}
+                            className={classList('w-full sm:w-60 mb-2 uppercase p-2 text-2xl flex items-center text-white font-bold justify-center h-12 rounded-sm sm:mx-2 mx-0', profit > 0 ? 'cursor-pointer' : 'opacity-50',type=='web3fToPinksale'?'bg-pink':'bg-orange')}
                             onClick={async () => {
                                 if (profit > 0) {
                                     await contract.claim();
@@ -366,7 +365,7 @@ const Deposit = ({
                             COLLECT
                         </div>
                         <div
-                            className={classList('w-full sm:w-60 mb-2 uppercase p-2 text-2xl bg-orange flex items-center text-white font-bold justify-center h-12 rounded-sm sm:mx-2 mx-0', depositedValue + weiToDecimal(userData?.amount) > 0 ? 'cursor-pointer' : 'opacity-50')}
+                            className={classList('w-full sm:w-60 mb-2 uppercase p-2 text-2xl flex items-center text-white font-bold justify-center h-12 rounded-sm sm:mx-2 mx-0', depositedValue + weiToDecimal(userData?.amount) > 0 ? 'cursor-pointer' : 'opacity-50',type=='web3fToPinksale'?'bg-pink':'bg-orange')}
                             onClick={async () => {
                                 if (depositedValue + weiToDecimal(userData?.amount) > 0) {
                                     await contract.unlock();

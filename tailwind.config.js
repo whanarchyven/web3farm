@@ -13,7 +13,8 @@ module.exports = {
       colors:{
         "violet":"#A64AC9",
         "blue":"#58FFE1",
-        'orange':'#F4B521'
+        'orange':'#F4B521',
+        'pink':'#f95192'
       },
       fontFamily:{
         "pluto":"Pluto",

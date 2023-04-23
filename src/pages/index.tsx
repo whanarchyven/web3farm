@@ -83,15 +83,15 @@ export default function Home() {
                                 </span></p>
                             </div>
                             <div className={'w-3/4 mt-4 flex items-center justify-between'}>
-                                <a href={'https://pinksale.notion.site/WEB3-FARM-KYC-Verification-8b57ce0f2b794066b9dabce9047c31de'}
+                                <a target={'_blank'} href={'https://pinksale.notion.site/WEB3-FARM-KYC-Verification-8b57ce0f2b794066b9dabce9047c31de'}
                                     className={'cursor-pointer px-4 w-full mr-2 py-2 bg-orange rounded-sm flex items-center text-white text-2xl justify-center font-bold'}>
                                     KYC
                                 </a>
-                                <a href={'https://blocksafu.com/project-detail/0xC2dEB6E28a09bBA1A5D1d462a303C26fB8b51B8a'}
+                                <a target={'_blank'} href={'https://blocksafu.com/project-detail/0xC2dEB6E28a09bBA1A5D1d462a303C26fB8b51B8a'}
                                     className={'cursor-pointer px-4 w-full mx-2 py-2 bg-orange rounded-sm flex items-center text-white text-2xl justify-center font-bold'}>
                                     AUDIT
                                 </a>
-                                <a href={'https://blocksafu.com/project-detail/0x62496AA0b15C251cF455DA55F62F08D70C3F8818'}
+                                <a target={'_blank'} href={'https://blocksafu.com/project-detail/0x62496AA0b15C251cF455DA55F62F08D70C3F8818'}
                                     className={'cursor-pointer px-4 w-full mx-2 py-2 bg-orange rounded-sm flex items-center text-white text-2xl justify-center font-bold'}>
                                     SAFU
                                 </a>
@@ -328,7 +328,7 @@ export default function Home() {
                     </Marquee>
                 </div>
                 <div className={'bg-black w-full p-3 sm:py-10 sm:px-32'}>
-                    <p className={'uppercase font-black text-orange text-2xl sm:text-4xl'}>HAVE QUESTIONS? WRITE US!</p>
+                    <a id={'socials'} className={'uppercase font-black text-orange text-2xl sm:text-4xl'}>HAVE QUESTIONS? WRITE US!</a>
                     <div className={'grid mt-5 gap-5 sm:grid-cols-4'}>
                         <input onChange={(event) => {
                         }}
@@ -346,13 +346,13 @@ export default function Home() {
                     </div>
                     <div
                         className={'w-full mt-24 animate-navbarOpen transition-all duration-300 mt-3 grid sm:grid-cols-7 items-center'}>
-                        <a href={'https://www.pinksale.finance/launchpad/0x0a0b880A42d419c69B61Ab39e9eE945df0F39BAC?chain=BSC'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Presale</a>
-                        <a href={'https://pinksale.notion.site/WEB3-FARM-KYC-Verification-8b57ce0f2b794066b9dabce9047c31de'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>KYC</a>
-                        <a href={'https://blocksafu.com/project-detail/0xC2dEB6E28a09bBA1A5D1d462a303C26fB8b51B8a'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>AUDIT</a>
-                        <a href={'https://blocksafu.com/project-detail/0x62496AA0b15C251cF455DA55F62F08D70C3F8818'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>SAFU</a>
-                        <a href={'https://web3farming.gitbook.io/web-3-farm.-1/'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Docs</a>
-                        <a href={'https://t.me/web3farming_portal'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Telegram</a>
-                        <a href={'https://twitter.com/web3_Farm'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Twitter</a>
+                        <a target={'_blank'} href={'https://www.pinksale.finance/launchpad/0x0a0b880A42d419c69B61Ab39e9eE945df0F39BAC?chain=BSC'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Presale</a>
+                        <a target={'_blank'} href={'https://pinksale.notion.site/WEB3-FARM-KYC-Verification-8b57ce0f2b794066b9dabce9047c31de'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>KYC</a>
+                        <a target={'_blank'} href={'https://blocksafu.com/project-detail/0xC2dEB6E28a09bBA1A5D1d462a303C26fB8b51B8a'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>AUDIT</a>
+                        <a target={'_blank'} href={'https://blocksafu.com/project-detail/0x62496AA0b15C251cF455DA55F62F08D70C3F8818'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>SAFU</a>
+                        <a target={'_blank'} href={'https://web3farming.gitbook.io/web-3-farm.-1/'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Docs</a>
+                        <a target={'_blank'} href={'https://t.me/web3farming_portal'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Telegram</a>
+                        <a target={'_blank'} href={'https://twitter.com/web3_Farm'} className={'text-2xl uppercase font-semibold text-orange text-center  cursor-pointer '}>Twitter</a>
                     </div>
                 </div>
 
