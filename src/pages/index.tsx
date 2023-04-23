@@ -77,10 +77,7 @@ export default function Home() {
                             </div>
                             <div className={'w-full mt-3 flex items-center'}>
                                 <img className={'w-9 aspect-square'} src={'/images/done.svg'}/>
-                                <p className={'text-white ml-2 text-2xl font-[900]'}>TIME TO START: <span
-                                    className={'font-normal text-orange font-museo'}>
-                                    <CountdownDateTimer time={new Date(2023, 3, 26, 16, 0, 0, 0)} timeLimits={'days'}/>
-                                </span></p>
+                                <p className={'text-white ml-2 text-2xl font-[900]'}>TIME TO START: <CountdownDateTimer time={new Date(2023, 3, 26, 16, 0, 0)}/></p>
                             </div>
                             <div className={'w-3/4 mt-4 flex items-center justify-between'}>
                                 <a target={'_blank'} href={'https://pinksale.notion.site/WEB3-FARM-KYC-Verification-8b57ce0f2b794066b9dabce9047c31de'}
