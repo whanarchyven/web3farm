@@ -10,5 +10,5 @@ export const bnbToUsdtStacking='0x4BDd14B6A5bd4eEd30A26B3eF9bF935E1661e42A';
 
 export const busdToken='0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56';
 export const usdtTolen='0x69EE10cEB98298249893481dB812e7004849700e';
-export const booster='0x6bCA7e2B18d2b55f81b5fbAa731d603C4aA55022';
+export const booster='0xDCF1bE685345Ebf6b701483BC43A2d73344A59fF';
 export const web3fToken='0x62496AA0b15C251cF455DA55F62F08D70C3F8818';
